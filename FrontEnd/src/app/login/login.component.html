@@ -1,0 +1,24 @@
+<p>login works!</p>
+
+<div class="container mt-4" >
+    <div class="card">
+        <h1>Employee Login</h1>
+<form>
+ 
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" id="email"  placeholder="Enter Email">
+      </div>
+ 
+      <div class="form-group">
+        <label>Paaword</label>
+        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control" id="password" class="form-control" placeholder="Enter Password">
+      </div>
+ 
+     <button type="submit" class="btn btn-primary" (click)="Login()">Login</button>
+ 
+ 
+  </form>
+</div>
+ 
+</div>
