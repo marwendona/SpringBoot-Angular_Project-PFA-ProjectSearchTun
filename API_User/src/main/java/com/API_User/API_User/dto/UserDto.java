@@ -1,39 +1,49 @@
 package com.API_User.API_User.dto;
 public class UserDto {
-    private int userDtoId;
-    private String userDtoName;
-    private String userDtoEmail;
-    private String userDtoPassword;
-    public UserDto(int userDtoId, String userDtoName, String userDtoEmail, String userDtoPassword) {
-        this.userDtoId = userDtoId;
-        this.userDtoName = userDtoName;
-        this.userDtoEmail = userDtoEmail;
-        this.userDtoPassword = userDtoPassword;
+    private int userId;
+    private String userName;
+    private String email;
+    private String password;
+
+    public UserDto(int userId, String userName, String email, String password) {
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
+
     public UserDto() {
     }
-    public int getUserDtoId() {
-        return userDtoId;
+
+    public int getUserId() {
+        return userId;
     }
-    public void setUserDtoId(int userDtoId) {
-        this.userDtoId = userDtoId;
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-    public String getUserDtoName() {
-        return userDtoName;
+
+    public String getUserName() {
+        return userName;
     }
-    public void setUserDtoName(String userDtoName) {
-        this.userDtoName = userDtoName;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-    public String getUserDtoEmail() {
-        return userDtoEmail;
+
+    public String getEmail() {
+        return email;
     }
-    public void setUserDtoEmail(String userDtoEmail) {
-        this.userDtoEmail = userDtoEmail;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public String getUserDtoPassword() {
-        return userDtoPassword;
+
+    public String getPassword() {
+        return password;
     }
-    public void setUserDtoPassword(String userDtoPassword) {
-        this.userDtoPassword = userDtoPassword;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

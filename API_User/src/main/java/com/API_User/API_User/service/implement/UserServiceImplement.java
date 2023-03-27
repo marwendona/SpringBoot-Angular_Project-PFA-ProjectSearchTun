@@ -21,24 +21,24 @@ public class UserServiceImplement implements UserService {
     @Override
     public String addUser(UserDto userDto) {
         User user = new User(
-                userDto.getUserDtoId(),
-                userDto.getUserDtoName(),
-                userDto.getUserDtoEmail(),
-                this.passwordEncoder.encode(userDto.getUserDtoPassword())
+                userDto.getUserId(),
+                userDto.getUserName(),
+                userDto.getEmail(),
+                this.passwordEncoder.encode(userDto.getPassword())
         );
         userRepository.save(user);
         return user.getUserName();
     }
     @Override
-    public LoginResponse loginUser(LoginDto loginDTO) {
+    public LoginResponse loginUser(LoginDto loginDto) {
         String msg = "";
-        User user1 = userRepository.findUserByUserEmail(loginDTO.getLoginDtoEmail());
+        User user1 = userRepository.findByEmail(loginDto.getEmail());
         if (user1 != null) {
-            String password = loginDTO.getLoginDtoPassword();
-            String encodedPassword = user1.getUserPassword();
+            String password = loginDto.getPassword();
+            String encodedPassword = user1.getPassword();
             Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             if (isPwdRight) {
-                Optional<User> user = userRepository.findUserByUserEmailAndUserPassword(loginDTO.getLoginDtoEmail(), encodedPassword);
+                Optional<User> user = userRepository.findOneByEmailAndPassword(loginDto.getEmail(), encodedPassword);
                 if (user.isPresent()) {
                     return new LoginResponse("Login Success", true);
                 } else {

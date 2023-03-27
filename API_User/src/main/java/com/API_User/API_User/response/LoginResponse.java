@@ -1,31 +1,38 @@
 package com.API_User.API_User.response;
 
 public class LoginResponse {
-    String loginMessage;
-    Boolean loginStatus;
-    public LoginResponse(String loginMessage, Boolean loginStatus) {
-        this.loginMessage = loginMessage;
-        this.loginStatus = loginStatus;
+    String message;
+    Boolean status;
+
+    public LoginResponse(String message, Boolean status) {
+        this.message = message;
+        this.status = status;
     }
+
     public LoginResponse() {
     }
-    public String getLoginMessage() {
-        return loginMessage;
+
+    public String getMessage() {
+        return message;
     }
-    public void setLoginMessage(String loginMessage) {
-        this.loginMessage = loginMessage;
+
+    public void setMessage(String message) {
+        this.message = message;
     }
-    public Boolean getLoginStatus() {
-        return loginStatus;
+
+    public Boolean getStatus() {
+        return status;
     }
-    public void setLoginStatus(Boolean loginStatus) {
-        this.loginStatus = loginStatus;
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
+
     @Override
     public String toString() {
         return "LoginResponse{" +
-                "loginMessage='" + loginMessage + '\'' +
-                ", loginStatus=" + loginStatus +
+                "message='" + message + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

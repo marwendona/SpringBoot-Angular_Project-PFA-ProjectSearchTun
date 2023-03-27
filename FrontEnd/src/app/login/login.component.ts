@@ -23,7 +23,7 @@ export class LoginComponent {
       email: this.email,
       password: this.password,
     };
-        this.http.post("http://localhost:8085/api/v1/employee/login", bodyData).subscribe(  (resultData: any) => {
+        this.http.post("http://localhost:8085/api/v1/user/login", bodyData).subscribe(  (resultData: any) => {
         console.log(resultData);
         if (resultData.message == "Email not exits")
         {

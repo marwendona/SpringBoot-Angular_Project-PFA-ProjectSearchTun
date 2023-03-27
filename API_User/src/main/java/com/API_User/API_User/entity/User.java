@@ -10,41 +10,51 @@ public class User {
     private int userId;
     @Column(name="user_name", length = 255)
     private String userName;
-    @Column(name="user_email", length = 255)
-    private String userEmail;
-    @Column(name="user_password", length = 255)
-    private String userPassword;
-    public User(int userId, String userName, String userEmail, String userPassword) {
+    @Column(name="email", length = 255)
+    private String email;
+    @Column(name="password", length = 255)
+    private String password;
+
+    public User(int userId, String userName, String email, String password) {
         this.userId = userId;
         this.userName = userName;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
+        this.email = email;
+        this.password = password;
     }
+
     public User() {
     }
+
     public int getUserId() {
         return userId;
     }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public String getUserEmail() {
-        return userEmail;
+
+    public String getEmail() {
+        return email;
     }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public String getUserPassword() {
-        return userPassword;
+
+    public String getPassword() {
+        return password;
     }
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -52,8 +62,8 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPassword='" + userPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
