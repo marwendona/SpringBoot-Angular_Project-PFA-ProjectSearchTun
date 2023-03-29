@@ -22,12 +22,20 @@ public class UserServiceImplement implements UserService {
     public String addUser(UserDto userDto) {
         User user = new User(
                 userDto.getUserId(),
-                userDto.getUserName(),
+                userDto.getUserFirstName(),
+                userDto.getUserLastName(),
                 userDto.getEmail(),
-                this.passwordEncoder.encode(userDto.getPassword())
+                this.passwordEncoder.encode(userDto.getPassword()),
+                userDto.getInstitute(),
+                userDto.getProfession(),
+                userDto.getSkills(),
+                userDto.getPhoto(),
+                userDto.getCv(),
+                userDto.getLinkedin(),
+                userDto.getGithub()
         );
         userRepository.save(user);
-        return user.getUserName();
+        return user.getUserFirstName();
     }
     @Override
     public LoginResponse loginUser(LoginDto loginDto) {
