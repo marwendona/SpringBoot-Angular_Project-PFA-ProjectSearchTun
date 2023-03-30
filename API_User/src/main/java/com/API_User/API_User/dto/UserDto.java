@@ -1,19 +1,35 @@
 package com.API_User.API_User.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 import java.util.List;
 
 public class UserDto {
     private int userId;
+    @NotBlank(message = "Le champ first name ne peut pas être vide")
     private String userFirstName;
+    @NotBlank(message = "Le champ last name ne peut pas être vide")
     private String userLastName;
+    @Email(message = "Le champ email doit être une adresse email valide")
     private String email;
+    @NotBlank(message = "Le champ password ne peut pas être vide")
     private String password;
+    @NotBlank(message = "Le champ institue ne peut pas être vide")
     private String institute;
+    @NotBlank(message = "Le champ profession ne peut pas être vide")
     private String profession;
     private List<String> skills;
+    @NotBlank(message = "Le champ photo ne peut pas être vide")
+    @Pattern(regexp = "^.*\\.(jpg|jpeg|png)$", message = "Le champ photo doit être une image (JPEG, JPG ou PNG)")
     private String photo;
+    @NotBlank(message = "Le champ cv ne peut pas être vide")
+    @Pattern(regexp = "^.*\\.pdf$", message = "Le champ cv doit être un fichier PDF")
     private String cv;
+    @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ linkedin doit être un lien web valide")
     private String linkedin;
+    @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ github doit être un lien web valide")
     private String github;
 
     public UserDto(int userId, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
