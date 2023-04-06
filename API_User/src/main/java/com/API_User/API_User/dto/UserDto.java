@@ -1,8 +1,12 @@
 package com.API_User.API_User.dto;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -12,19 +16,24 @@ public class UserDto {
     private String userFirstName;
     @NotBlank(message = "Le champ last name ne peut pas être vide")
     private String userLastName;
-    @Email(message = "Le champ email doit être une adresse email valide")
+    @NotBlank(message = "Le champ email ne peut pas être nul")
+    @Email(message = "L'email doit être valide")
     private String email;
-    @NotBlank(message = "Le champ password ne peut pas être vide")
+    @NotBlank(message = "Le champ password ne peut pas être nul")
+    @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caractères")
+    @Pattern(regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@$!%?&])[A-Za-z\\d@$!%?&]+$", message = "Le mot de passe doit contenir des lettres majuscules, minuscules, chiffres et caractères spéciaux")
     private String password;
     @NotBlank(message = "Le champ institue ne peut pas être vide")
     private String institute;
     @NotBlank(message = "Le champ profession ne peut pas être vide")
     private String profession;
+    @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "skill")
     private List<String> skills;
-    @NotBlank(message = "Le champ photo ne peut pas être vide")
+    @NotBlank(message = "Le champ photo ne peut pas être nul")
     @Pattern(regexp = "^.*\\.(jpg|jpeg|png)$", message = "Le champ photo doit être une image (JPEG, JPG ou PNG)")
     private String photo;
-    @NotBlank(message = "Le champ cv ne peut pas être vide")
+    @NotBlank(message = "Le champ cv ne peut pas être nul")
     @Pattern(regexp = "^.*\\.pdf$", message = "Le champ cv doit être un fichier PDF")
     private String cv;
     @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ linkedin doit être un lien web valide")
