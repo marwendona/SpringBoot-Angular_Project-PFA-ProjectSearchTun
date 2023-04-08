@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,27 +8,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent {
 
-  employeename: string ="";
-  email: string ="";
-  password: string ="";
+  userDtoName: string ="";
+  userDtoEmail: string ="";
+  userDtoPassword: string ="";
+  signupForm?: FormGroup;
  
  
   constructor(private http: HttpClient )
   {
  
   }
+
+
   save()
   {
   
     let bodyData = {
-      "employeename" : this.employeename,
-      "email" : this.email,
-      "password" : this.password
+      "userDtoName" : this.userDtoName,
+      "userDtoEmail" : this.userDtoEmail,
+      "userDtoPassword" : this.userDtoPassword
     };
     this.http.post("http://localhost:8085/api/v1/user/save",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
     {
         console.log(resultData);
-        alert("Employee Registered Successfully");
+        alert("User Registered Successfully");
  
     });
   }

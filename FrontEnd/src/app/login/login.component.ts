@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,31 +9,36 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  email: string ="";
-  password: string ="";
+  hide = true;
+
+  loginDtoEmail: string ="";
+  loginDtoPassword: string ="";
  
  
   constructor(private router: Router,private http: HttpClient) {}
  
  
   Login() {
-    console.log(this.email);
-    console.log(this.password);
+    console.log(this.loginDtoEmail);
+    console.log(this.loginDtoPassword);
+
     let bodyData = {
-      email: this.email,
-      password: this.password,
+      loginDtoEmail: this.loginDtoEmail,
+      loginDtoPassword: this.loginDtoPassword,
     };
-        this.http.post("http://localhost:8085/api/v1/user/login", bodyData).subscribe(  (resultData: any) => {
-        console.log(resultData);
-        if (resultData.message == "Email not exits")
+        this.http.post("http://localhost:8085/api/v1/user/login", bodyData).subscribe(  (loginMessage: any) => {
+        console.log(loginMessage);
+        console.log(loginMessage.message);
+
+        if (loginMessage.loginMessage == "Email not exits")
         {
       
           alert("Email not exits");
     
         }
-        else if(resultData.message == "Login Success")
+        else if(loginMessage.loginMessage == "Login Success")
     
-         {
+        {
           this.router.navigateByUrl('/home');
         }
         else
@@ -43,5 +48,4 @@ export class LoginComponent {
  
       });
     }
-
 }
