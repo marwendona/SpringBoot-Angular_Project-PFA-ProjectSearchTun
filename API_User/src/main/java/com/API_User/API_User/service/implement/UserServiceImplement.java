@@ -59,4 +59,17 @@ public class UserServiceImplement implements UserService {
             return new LoginResponse("Email not exits", false);
         }
     }
+
+    @Override
+    public Optional<User> getUser(LoginDto loginDto) {
+        var user = userRepository.findByEmail(loginDto.getEmail());
+        if (user != null){
+            var password = loginDto.getPassword();
+            var encodedPassword = user.getPassword();
+            if (passwordEncoder.matches(password, encodedPassword)){
+                return Optional.of(user);
+            }
+        }
+        return Optional.empty();
+    }
 }
