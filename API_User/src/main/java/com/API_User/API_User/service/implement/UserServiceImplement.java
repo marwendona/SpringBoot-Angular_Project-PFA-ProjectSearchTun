@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -86,30 +87,26 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public User getUserById(int id) {
-        return userRepository.findById(id); //fama mochkel
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found"));
     }
 
 
     @Override
     public void updateUser(int id, User user) {
-        User userFromDb = userRepository.findById(id); //fama mochkel
+        User userFromDb = getUserById(id);
         System.out.println(userFromDb.toString());
 
         userFromDb.setUserFirstName(user.getUserFirstName());
         userFromDb.setUserLastName(user.getUserLastName());
         userFromDb.setEmail(user.getEmail());
-
         userFromDb.setPassword(this.passwordEncoder.encode(user.getPassword()));
         userFromDb.setInstitute(user.getInstitute());
         userFromDb.setProfession(user.getProfession());
-
         userFromDb.setSkills(user.getSkills());
         userFromDb.setPhoto(user.getPhoto());
         userFromDb.setCv(user.getCv());
-
         userFromDb.setLinkedin(user.getLinkedin());
         userFromDb.setGitub(user.getGithub());
-
 
         userRepository.save(userFromDb);
 

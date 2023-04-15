@@ -39,7 +39,6 @@ public class UserController {
     }
 
     @PostMapping(path="/login")
-    @PreAuthorize("permitAll()")
     public String loginUser(@RequestBody LoginDto loginDTO){
         var userOptional = userService.getUser(loginDTO);
         if (userOptional.isEmpty()){
