@@ -19,6 +19,9 @@ public class User {
     @Column(name="user_id", length = 45)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
+    @Enumerated(EnumType.STRING)
+    @Column(name="role", length = 10)
+    private Role role;
     @Column(name="user_firstName", length = 255)
     @NotBlank(message = "Le champ first name ne peut pas être nul")
     private String userFirstName;
@@ -59,8 +62,9 @@ public class User {
     @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ github doit être un lien web valide")
     private String github;
 
-    public User(int userId, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
+    public User(int userId, Role role, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
         this.userId = userId;
+        this.role = role;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.email = email;
@@ -83,6 +87,14 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getUserFirstName() {
@@ -156,60 +168,62 @@ public class User {
     public String getGithub() {
         return github;
     }
-
     public void setCv(String cv) throws IllegalArgumentException {
-        String mimeType = null;
-        mimeType = TIKA.detect(cv.getBytes());
-        if (mimeType == null || !mimeType.equals("application/pdf")) {
-            throw new IllegalArgumentException("CV must be a PDF file");
-        }
+//        String mimeType = null;
+//        mimeType = TIKA.detect(cv.getBytes());
+//        if (mimeType == null || !mimeType.equals("application/pdf")) {
+//            throw new IllegalArgumentException("CV must be a PDF file");
+//        }
         this.cv = cv;
     }
 
     public void setPhoto(String photo) throws IllegalArgumentException {
-        String mimeType = null;
-        try {
-            mimeType = TIKA.detect(new URL(photo));
-        } catch (IOException e) {
-            // Handle exception
-        }
-        if (mimeType == null || (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png"))) {
-            throw new IllegalArgumentException("Photo must be a JPEG, JPG or PNG file");
-        }
+//        String mimeType = null;
+//        try {
+//            mimeType = TIKA.detect(new URL(photo));
+//        } catch (IOException e) {
+//            // Handle exception
+//        }
+//        if (mimeType == null || (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png"))) {
+//            throw new IllegalArgumentException("Photo must be a JPEG, JPG or PNG file");
+//        }
         this.photo = photo;
     }
 
     public void setLinkedin(String linkedin) {
-        // Vérification de la validité du lien LinkedIn
-        String regex = "^(https?://)?([a-z]{2,3}\\.linkedin\\.com/(mwl|in|pub|profile|edu/|groups/|company/[^/]*))";
-        if (linkedin != null && !linkedin.isEmpty() && linkedin.matches(regex)) {
-            this.linkedin = linkedin;
-        } else {
-            throw new IllegalArgumentException("Le lien LinkedIn n'est pas valide.");
-        }
+//        // Vérification de la validité du lien LinkedIn
+//        String regex = "^(https?://)?([a-z]{2,3}\\.linkedin\\.com/(mwl|in|pub|profile|edu/|groups/|company/[^/]*))";
+//        if (linkedin != null && !linkedin.isEmpty() && linkedin.matches(regex)) {
+//            this.linkedin = linkedin;
+//        } else {
+//            throw new IllegalArgumentException("Le lien LinkedIn n'est pas valide.");
+//        }
+        this.linkedin = linkedin;
     }
 
-    public void setGitub(String github) {
-        // Vérification de la validité du lien GitHub
-        String regex = "^https://github.com/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}/?$";
-        if (github != null && !github.isEmpty() && github.matches(regex)) {
-            this.github = github;
-        } else {
-            throw new IllegalArgumentException("Le lien GitHub n'est pas valide.");
-        }
+    public void setGithub(String github) {
+//        // Vérification de la validité du lien GitHub
+//        String regex = "^https://github.com/[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}/?$";
+//        if (github != null && !github.isEmpty() && github.matches(regex)) {
+//            this.github = github;
+//        } else {
+//            throw new IllegalArgumentException("Le lien GitHub n'est pas valide.");
+//        }
+        this.github = github;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
+                ", role=" + role +
                 ", userFirstName='" + userFirstName + '\'' +
                 ", userLastName='" + userLastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", institute='" + institute + '\'' +
                 ", profession='" + profession + '\'' +
-                ", skils=" + skills +
+                ", skills=" + skills +
                 ", photo='" + photo + '\'' +
                 ", cv='" + cv + '\'' +
                 ", linkedin='" + linkedin + '\'' +

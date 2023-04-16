@@ -1,5 +1,6 @@
 package com.API_User.API_User.dto;
 
+import com.API_User.API_User.entity.Role;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class UserDto {
     private int userId;
+    private Role role;
     @NotBlank(message = "Le champ first name ne peut pas être vide")
     private String userFirstName;
     @NotBlank(message = "Le champ last name ne peut pas être vide")
@@ -41,8 +43,9 @@ public class UserDto {
     @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ github doit être un lien web valide")
     private String github;
 
-    public UserDto(int userId, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
+    public UserDto(int userId, Role role, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
         this.userId = userId;
+        this.role = role;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.email = email;
@@ -65,6 +68,14 @@ public class UserDto {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getUserFirstName() {

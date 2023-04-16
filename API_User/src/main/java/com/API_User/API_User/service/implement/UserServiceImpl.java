@@ -5,7 +5,6 @@ import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.User;
 import com.API_User.API_User.repository.UserRepository;
 import com.API_User.API_User.service.UserService;
-import com.API_User.API_User.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,14 +15,16 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserServiceImplement implements UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder= new BCryptPasswordEncoder();
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Override
     public String addUser(UserDto userDto) {
         User user = new User(
                 userDto.getUserId(),
+                userDto.getRole(),
                 userDto.getUserFirstName(),
                 userDto.getUserLastName(),
                 userDto.getEmail(),
@@ -36,48 +37,23 @@ public class UserServiceImplement implements UserService {
                 userDto.getLinkedin(),
                 userDto.getGithub()
         );
-        User user1 = userRepository.findByEmail(userDto.getEmail());
-        if (user1 == null) {
+        var user1 = userRepository.findByEmail(userDto.getEmail());
+        if (user1.isEmpty()) {
             userRepository.save(user);
             return user.getUserFirstName();
-        }else{
-            return "user exists";
-        }
-    }
-    @Override
-    public LoginResponse loginUser(LoginDto loginDto) {
-        String msg = "";
-        User user1 = userRepository.findByEmail(loginDto.getEmail());
-        if (user1 != null) {
-            String password = loginDto.getPassword();
-            String encodedPassword = user1.getPassword();
-            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
-            if (isPwdRight) {
-                Optional<User> user = userRepository.findOneByEmailAndPassword(loginDto.getEmail(), encodedPassword);
-                if (user.isPresent()) {
-                    return new LoginResponse("Login Success", true);
-                } else {
-                    return new LoginResponse("Login Failed", false);
-                }
-            } else {
-                return new LoginResponse("password Not Match", false);
-            }
         } else {
-            return new LoginResponse("Email not exits", false);
+            return "user exists";
         }
     }
 
     @Override
     public Optional<User> getUser(LoginDto loginDto) {
-        var user = userRepository.findByEmail(loginDto.getEmail());
-        if (user != null){
-            var password = loginDto.getPassword();
-            var encodedPassword = user.getPassword();
-            if (passwordEncoder.matches(password, encodedPassword)){
-                return Optional.of(user);
-            }
-        }
-        return Optional.empty();
+        return userRepository.findByEmail(loginDto.getEmail())
+                .filter(user -> {
+                    var password = loginDto.getPassword();
+                    var encodedPassword = user.getPassword();
+                    return passwordEncoder.matches(password, encodedPassword);
+                });
     }
 
     @Override
@@ -92,7 +68,7 @@ public class UserServiceImplement implements UserService {
 
 
     @Override
-    public void updateUser(int id, User user) {
+    public void updateUser(int id, UserDto user) {
         User userFromDb = getUserById(id);
         System.out.println(userFromDb.toString());
 
@@ -106,7 +82,7 @@ public class UserServiceImplement implements UserService {
         userFromDb.setPhoto(user.getPhoto());
         userFromDb.setCv(user.getCv());
         userFromDb.setLinkedin(user.getLinkedin());
-        userFromDb.setGitub(user.getGithub());
+        userFromDb.setGithub(user.getGithub());
 
         userRepository.save(userFromDb);
 
@@ -116,5 +92,10 @@ public class UserServiceImplement implements UserService {
     public void deleteUser(int userId) {
         userRepository.deleteById(userId);
 
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

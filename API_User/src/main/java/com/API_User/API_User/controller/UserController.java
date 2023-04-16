@@ -33,26 +33,9 @@ public class UserController {
     }
 
     @GetMapping(path = "/test")
+    @PreAuthorize("hasRole('ADMIN')")
     public String test(){
-
         return "test";
-    }
-
-    @PostMapping(path="/login")
-    public String loginUser(@RequestBody LoginDto loginDTO){
-        var userOptional = userService.getUser(loginDTO);
-        if (userOptional.isEmpty()){
-            throw new IllegalArgumentException("User not found");
-        }
-        var user = userOptional.get();
-        var now = new Date();
-        return Jwts.builder()
-                .setSubject(user.getEmail())
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + 60 * 10 * 1000))
-                .claim("roles", Role.ADMIN)
-                .signWith(SignatureAlgorithm.HS512, "secret-key")
-                .compact();
     }
 
     @GetMapping
@@ -62,19 +45,19 @@ public class UserController {
     }
 
     @GetMapping({"/{userId}"})
-    public ResponseEntity<User> getUser(@PathVariable int userId) {
-        return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+    public User getUser(@PathVariable int userId) {
+        return userService.getUserById(userId);
     }
 
 
     @PutMapping({"/{userId}"})
-    public ResponseEntity<User> updateTodo(@PathVariable("userId") int userId, @RequestBody User user) {
+    public ResponseEntity<User> update(@PathVariable("userId") int userId, @RequestBody UserDto user) {
         userService.updateUser(userId, user);
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
 
     @DeleteMapping({"/{userId}"})
-    public ResponseEntity<User> deleteTodo(@PathVariable("userId") int userId) {
+    public ResponseEntity<User> delete(@PathVariable("userId") int userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
