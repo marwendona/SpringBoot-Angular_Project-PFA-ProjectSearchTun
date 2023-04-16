@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCreateComponent } from '../dialog-create/dialog-create.component';
+import { SearchServiceService } from 'src/services/search-service.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { DialogCreateComponent } from '../dialog-create/dialog-create.component'
 })
 export class HeaderComponent {
 
-constructor(private matDialog:MatDialog){}
+constructor(private matDialog:MatDialog, private searchService: SearchServiceService){}
 
 openDialog(){
 
@@ -19,4 +20,18 @@ openDialog(){
 
 })
 }
+
+
+query: string = '';
+results: any[] = [];
+
+
+
+
+onSearch() {
+  this.searchService.search(this.query).subscribe(results => {
+    this.results = results;
+  });
+}
+
 }
