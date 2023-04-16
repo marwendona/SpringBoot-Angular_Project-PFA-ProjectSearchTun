@@ -1,0 +1,77 @@
+/* Styles for the section container */
+.padding-y {
+    padding: 50px 0;
+  }
+  
+  /* Styles for the container */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Styles for the row */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+  }
+  
+  /* Styles for the aside element */
+  aside {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 15px;
+  }
+  
+  /* Styles for the filter element */
+  div {
+    background-color:rgba(201, 202, 214, 0.068) ;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for the filter label */
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000;
+  }
+  
+  /* Styles for the checkbox and range input */
+  input[type="checkbox"],
+  input[type="range"] {
+    margin-right: 10px;
+  }
+  
+  /* Styles for the main element */
+  main {
+    flex: 0 0 75%;
+    max-width: 75%;
+    padding: 0 15px;
+  }
+  
+
+  /* Styles for the button */
+button {
+    background-color: royalblue;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Styles for the button on hover */
+  button:hover {
+    background-color: royalblue;
+  }
+  

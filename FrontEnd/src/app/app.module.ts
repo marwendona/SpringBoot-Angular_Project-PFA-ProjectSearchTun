@@ -28,6 +28,10 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogCreateComponent } from './dialog-create/dialog-create.component';
+import { CommonModule } from '@angular/common';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+
 
 @NgModule({
   declarations: [
@@ -41,6 +45,8 @@ import { DialogCreateComponent } from './dialog-create/dialog-create.component';
     RegisterComponent,
     ConfirmApplyComponent,
     DialogCreateComponent,
+    
+   
     
     
   
@@ -63,7 +69,9 @@ import { DialogCreateComponent } from './dialog-create/dialog-create.component';
     MatDatepickerModule,
     MatRadioModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    CommonModule,
    
     
     

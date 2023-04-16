@@ -23,22 +23,48 @@
         <input type="text" [(ngModel)]="projectDtoProjectType" [ngModelOptions]="{standalone: true}" class="form-control" id="projectType"  placeholder="Project Type" required >
     </div> -->
 
-    <div class="form-group">
+    <!--<div class="form-group">
     <label>Project Type</label >
     <select required >
         <option value="">Select an option</option>
         <option *ngFor="let item of data" [value]="item.value">{{ item.label }}</option>
       </select>
 
+    </div>-->
+
+
+    <div class="form-group">
+      <label>Project Type</label>
+      <ng-multiselect-dropdown
+        [placeholder]="'Select A Type'"
+        [data]="TypeProjects"
+        [(ngModel)]="projectDtoProjectType"
+        [settings]="dropdownSettingsTypeProject"
+        [required]="true">
+      </ng-multiselect-dropdown>
     </div>
 
     
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <label>Skills</label>
         <input type="text" [(ngModel)]="projectDtoSkills" [ngModelOptions]="{standalone: true}" class="form-control" id="skills"  placeholder="Skills" required >
-      </div>  
+      </div>  -->
 
+
+      <!-- HTML template -->
+<div class="form-group">
+  <label>Skills</label>
+  <ng-multiselect-dropdown 
+    [placeholder]="'Select skills'"
+    [data]="skills"
+    [(ngModel)]="projectDtoSkills"
+    [settings]="dropdownSettings"
+    [required]="true" >
+  </ng-multiselect-dropdown>
+</div>
+
+      
   
       <div class="form-group">
         <label>Number</label>

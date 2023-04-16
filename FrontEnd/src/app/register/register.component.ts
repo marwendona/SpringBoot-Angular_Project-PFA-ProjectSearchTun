@@ -8,9 +8,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
 
-  userDtoName: string ="";
+  userDtoFirstName: string ="";
+  userDtoLastName: string ="";
   userDtoEmail: string ="";
   userDtoPassword: string ="";
+  userDtoSkills: string="";
+  userDtoInstitute: string="";
+  userDtoGithub: string="";
+  userDtoLinekdin: string="";
+  userDtoPDP:string="";
   signupForm?: FormGroup;
  
  
@@ -24,9 +30,15 @@ export class RegisterComponent {
   {
   
     let bodyData = {
-      "userDtoName" : this.userDtoName,
+      "userDtoFirstName" : this.userDtoFirstName,
+      "userDtoLastName":this.userDtoLastName,
       "userDtoEmail" : this.userDtoEmail,
-      "userDtoPassword" : this.userDtoPassword
+      "userDtoPassword" : this.userDtoPassword,
+      "userDtoSkills": this.userDtoSkills,
+      "userDtoInstitute":this.userDtoInstitute,
+      "userDtoGithub":this.userDtoGithub,
+      "userDtoLinekdin" : this.userDtoLinekdin,
+      "userDtoPDP": this.userDtoPDP,
     };
     this.http.post("http://localhost:8085/api/v1/user/save",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
     {

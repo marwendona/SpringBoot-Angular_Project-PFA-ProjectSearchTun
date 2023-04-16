@@ -1,15 +1,6 @@
 <app-header></app-header>
 
-<section class="bg-primary py-5">
-    <div class="container">
-      <ol class="breadcrumb ondark mb-0">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Library</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data</li>
-      </ol>
-    </div> <!-- container //  -->
-    </section>
-    <!-- ============== SECTION PAGETOP END// ============== -->
+
     
     <!-- ============== SECTION CONTENT ============== -->
     <section class="padding-y">
@@ -18,7 +9,38 @@
     <div class="row">
       <aside class="col-lg-3">
     
-    
+        <div>
+          <h2>Filter</h2>
+          <label>Project Type:</label>
+          <div *ngFor="let category of categories">
+            <input type="checkbox" name="category" [value]="category">{{category}}
+          </div>
+          <label>Date:</label>
+          <div *ngFor="let size of sizes">
+            <input type="checkbox" name="size" [value]="size">{{size}}
+          </div>
+
+          <div class="form-group">
+          <label>skills :</label>
+          <ng-multiselect-dropdown 
+              [placeholder]="'Select skills'"
+              [data]="colors"
+              [settings]="dropdownSettings"
+               >
+            </ng-multiselect-dropdown>
+          </div>
+         
+
+          
+
+          <div class="form-group">
+            <label>Number</label>
+            <input matInput  type="number" min="1" [(ngModel)]="priceRange" [ngModelOptions]="{standalone: true}" class="form-control" id="number"  placeholder="Number" required >
+          </div>
+        
+          <button>Apply Filter</button>
+        </div>
+
     
      <!-- card.// -->
     <!-- ===== Card for sidebar filter .// ===== -->
@@ -28,18 +50,19 @@
         
       <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
        
-        <div class="ms-auto ">
-          <select class="form-select d-inline-block w-auto me-1">
-            <option value="0">All</option>
-            <option value="1">PFA</option>
-            <option value="2">PFE</option>
-            <option value="3">Academic Project</option>
-          </select>
-         
-        </div>
+        <!--<form [formGroup]="form" (ngSubmit)="onFilter()">
+          <input formControlName="name" placeholder="Name">
+          <input formControlName="age" placeholder="Age">
+          <button type="submit">Filter</button>
+        </form>
+        <ul>
+          <li *ngFor="let result of results">{{result}}</li>
+        </ul> -->
+
+       
       </header>
     
-      <!-- ========= content items ========= -->
+      <!-- -->
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
           <figure class="card card-product-grid">
@@ -176,7 +199,7 @@
             <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
           </figcaption>
           </figure>
-        </div> <!-- col end.// -->
+        </div> 
     
         <div class="col-lg-4 col-md-6 col-sm-6">
           <figure class="card card-product-grid">
@@ -186,16 +209,16 @@
           <figcaption class="info-wrap border-top">
             <div class="price-wrap">
             <strong class="price">$43.50</strong>
-            </div> <!-- price-wrap.// -->
+            </div> 
             <p class="title mb-2">Summer New Men's Denim Jeans Shorts </p>
             
             <a href="#" class="btn btn-primary" routerLink="/details">View More Details</a>
             <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
           </figcaption>
           </figure>
-        </div> <!-- col end.// -->
-      </div> <!-- row end.// -->
-    
+        </div> 
+      </div> 
+    -->
       <hr>
   <footer class="d-flex mt-4">
                 

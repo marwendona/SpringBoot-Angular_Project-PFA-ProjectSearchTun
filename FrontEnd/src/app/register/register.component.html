@@ -1,34 +1,57 @@
-
 <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center">Sign Up</h5>
-            <form class="form-signup">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" [(ngModel)]="userDtoName" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" class="form-control" placeholder="Username"required autofocus>
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign Up</h5>
+          <form class="form-signun">
+  <div class="form-group">
+    <label>FirstName</label>
+    <input type="text" [(ngModel)]="userDtoFirstName" [ngModelOptions]="{standalone: true}"  class="form-control" id="FirstName" class="form-control" placeholder="FirstName"required autofocus oninvalid="this.style.borderColor='red'">
+  </div>
+  <div class="form-group">
+    <label>LastName</label>
+    <input type="text" [(ngModel)]="userDtoLastName" [ngModelOptions]="{standalone: true}"  class="form-control" id="LastName" class="form-control" placeholder="LastName"required autofocus oninvalid="this.style.borderColor='red'">
+  </div>
+
+  <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="userDtoEmail" [ngModelOptions]="{standalone: true}" class="form-control" id="email"  placeholder="Ex. Username@iit.ens.tn" required >
     </div>
-  
+
     <div class="form-group">
-        <label>Email</label>
-        <input type="email" [(ngModel)]="userDtoEmail" [ngModelOptions]="{standalone: true}" class="form-control" id="email"  placeholder="Ex. Username@iit.ens.tn" required >
-      </div>
-  
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" [(ngModel)]="userDtoPassword" [ngModelOptions]="{standalone: true}" class="form-control" id="password" class="form-control" placeholder="Password"required>
-      </div>
-  
-     <button type="submit" class="btn btn-primary" (click)="save()">Sign Up</button>
-     <hr>
-     <p><a class="btn btn-success btn-block" [routerLink]="['/login']"><i class="fa fa-plus" aria-hidden="true"></i> Sign In</a></p>
-  
-  
-  </form>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+      <label>Password</label>
+      <input type="password" [(ngModel)]="userDtoPassword" [ngModelOptions]="{standalone: true}" class="form-control" id="password" class="form-control" placeholder="Password"required>
+    </div>
+    <div class="form-group">
+      <label>Skills</label>
+      <input type="text" [(ngModel)]="userDtoSkills" [ngModelOptions]="{standalone: true}"  class="form-control" id="Skills" class="form-control" placeholder="Skills"required >
+    </div>
+    <div class="form-group">
+      <label>Institute</label>
+      <input type="text" [(ngModel)]="userDtoInstitute" [ngModelOptions]="{standalone: true}"  class="form-control" id="Institute" class="form-control" placeholder="Institute"required >
+    </div>
+    <div class="form-group">
+      <label>Linkedin</label>
+      <input type="text" [(ngModel)]="userDtoLinekdin" [ngModelOptions]="{standalone: true}"  class="form-control" id="Linkedin" class="form-control" placeholder="Linkedin"required >
+    </div>
+    <div class="form-group">
+      <label>Github</label>
+      <input type="text" [(ngModel)]="userDtoGithub" [ngModelOptions]="{standalone: true}"  class="form-control" id="Github" class="form-control" placeholder="Github"required >
+    </div>
+    <div class="form-group">
+      <label>photo de Profile</label>
+      <input type="file" [(ngModel)]="userDtoPDP" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" class="form-control" placeholder="photodeprofile" >
+    </div>
+
+    <button  type="submit" class="btn btn-primary btn-block " (click)="save()"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</button>
+   <hr>
+   <p><a class="btn btn-success btn-block" [routerLink]="['/login']"><i class="fa fa-plus" aria-hidden="true"></i> Sign In</a></p>
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
