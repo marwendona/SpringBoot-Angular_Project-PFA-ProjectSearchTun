@@ -11,22 +11,22 @@ export class LoginComponent {
 
   hide = true;
 
-  loginDtoEmail: string ="";
-  loginDtoPassword: string ="";
+  email: string ="";
+  password: string ="";
  
  
   constructor(private router: Router,private http: HttpClient) {}
  
  
   Login() {
-    console.log(this.loginDtoEmail);
-    console.log(this.loginDtoPassword);
+    console.log(this.email);
+    console.log(this.password);
 
     let bodyData = {
-      loginDtoEmail: this.loginDtoEmail,
-      loginDtoPassword: this.loginDtoPassword,
+      "email": this.email,
+      "password": this.password,
     };
-        this.http.post("http://localhost:8085/api/v1/user/login", bodyData).subscribe(  (loginMessage: any) => {
+        this.http.post("http://localhost:8085/api/v1/auth/authenticate", bodyData).subscribe(  (loginMessage: any) => {
         console.log(loginMessage);
         console.log(loginMessage.message);
 
