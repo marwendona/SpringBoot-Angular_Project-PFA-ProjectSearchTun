@@ -1,21 +1,21 @@
 package com.API_User.API_User.service;
 
 import com.API_User.API_User.dto.LoginDto;
-import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.User;
+import com.API_User.API_User.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    String addUser(UserDto userDto);
+    String addUser(User user);
 
-    Optional<User> getUser(LoginDto loginDto);
+    Optional<UserDto> getUser(LoginDto loginDto);
 
-    List<User> getUsers();
-    User getUserById(int id);
-    void updateUser(int id, UserDto user);
+    List<UserDto> getUsers();
+    UserDto getUserById(int id);
+    void updateUser(int id, User user);
     void deleteUser(int userId);
 
-    Optional<User> findByEmail(String username);
+    Optional<UserDto> findByEmail(String username);
 }

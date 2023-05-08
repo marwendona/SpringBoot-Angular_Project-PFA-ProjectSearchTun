@@ -39,7 +39,7 @@ public class AuthenticationController {
     public String test() {
 //        var userOptional = userService.getUser(loginDTO);
 //        if (userOptional.isEmpty()){
-//            throw new IllegalArgumentException("User not found");
+//            throw new IllegalArgumentException("UserDto not found");
 //        }
 //        var user = userOptional.get();
 //        var now = new Date();

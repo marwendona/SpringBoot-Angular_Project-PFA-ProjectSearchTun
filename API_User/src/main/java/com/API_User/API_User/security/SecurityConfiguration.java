@@ -44,7 +44,7 @@ public class SecurityConfiguration {
 //    public UserDetailsService userDetailsService(UserService userService) {
 //        return username -> userService.findByEmail(username)
 //                .map(UserDetailsImpl::new)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+//                .orElseThrow(() -> new UsernameNotFoundException("UserDto not found"));
 //    }
 //
 //    @Bean
