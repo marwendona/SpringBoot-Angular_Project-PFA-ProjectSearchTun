@@ -1,6 +1,7 @@
 package com.API_User.API_User.dto;
 
-import com.API_User.API_User.entity.Role;
+import com.API_User.API_User.entity.user.Role;
+import com.API_User.API_User.entity.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
@@ -8,60 +9,77 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.apache.tika.Tika;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class UserDto {
     private static final Tika TIKA = new Tika();
+
     @Id
-    @Column(name="user_id", length = 45)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id", length = 45)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+
     @Enumerated(EnumType.STRING)
-    @Column(name="role", length = 10)
+    @Column(name = "role", length = 10)
     private Role role;
-    @Column(name="user_firstName", length = 255)
+
+    @Column(name = "user_firstName", length = 255)
     @NotBlank(message = "Le champ first name ne peut pas être nul")
     private String userFirstName;
-    @Column(name="user_lastName", length = 255)
+
+    @Column(name = "user_lastName", length = 255)
     @NotBlank(message = "Le champ last name ne peut pas être nul")
     private String userLastName;
-    @Column(name="email", length = 255)
+
+    @Column(name = "email", length = 255, unique = true)
     @NotBlank(message = "Le champ email ne peut pas être nul")
     @Email(message = "L'email doit être valide")
     private String email;
-    @Column(name="password", length = 255)
+
+    @Column(name = "password", length = 255)
     @NotBlank(message = "Le champ password ne peut pas être nul")
     @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caractères")
     @Pattern(regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@$!%?&])[A-Za-z\\d@$!%?&]+$", message = "Le mot de passe doit contenir des lettres majuscules, minuscules, chiffres et caractères spéciaux")
     private String password;
-    @Column(name="institute", length = 255)
+
+    @Column(name = "institute", length = 255)
     @NotBlank(message = "Le champ institue ne peut pas être nul")
     private String institute;
-    @Column(name="profession", length = 255)
+
+    @Column(name = "profession", length = 255)
     @NotBlank(message = "Le champ profession ne peut pas être nul")
     private String profession;
+
     @ElementCollection
     @CollectionTable(name = "skills", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "skill")
     private List<String> skills;
-    @Column(name="photo", length = 255)
+
+    @Column(name = "photo", length = 255)
     @NotBlank(message = "Le champ photo ne peut pas être nul")
     @Pattern(regexp = "^.*\\.(jpg|jpeg|png)$", message = "Le champ photo doit être une image (JPEG, JPG ou PNG)")
     private String photo;
-    @Column(name="cv", length = 255)
+
+    @Column(name = "cv", length = 255)
     @NotBlank(message = "Le champ cv ne peut pas être nul")
     @Pattern(regexp = "^.*\\.pdf$", message = "Le champ cv doit être un fichier PDF")
     private String cv;
-    @Column(name="linkedin", length = 255)
+
+    @Column(name = "linkedin", length = 255)
     @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ linkedin doit être un lien web valide")
     private String linkedin;
-    @Column(name="github", length = 255)
+
+    @Column(name = "github", length = 255)
     @Pattern(regexp = "^https?://[a-zA-Z0-9\\-.]+\\.[a-zA-Z]{2,}(?:/[a-zA-Z0-9\\-._~,!%\\?&=]*)?$", message = "Le champ github doit être un lien web valide")
     private String github;
 
-    public UserDto(int userId, Role role, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github) {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<ProjectDto> projects = new ArrayList<>();
+
+    public UserDto(int userId, Role role, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github, List<ProjectDto> projects) {
         this.userId = userId;
         this.role = role;
         this.userFirstName = userFirstName;
@@ -75,6 +93,7 @@ public class UserDto {
         this.cv = cv;
         this.linkedin = linkedin;
         this.github = github;
+        this.projects = projects;
     }
 
     public UserDto() {
@@ -167,6 +186,7 @@ public class UserDto {
     public String getGithub() {
         return github;
     }
+
     public void setCv(String cv) throws IllegalArgumentException {
 //        String mimeType = null;
 //        mimeType = TIKA.detect(cv.getBytes());
@@ -211,6 +231,14 @@ public class UserDto {
         this.github = github;
     }
 
+    public List<ProjectDto> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<ProjectDto> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
@@ -227,6 +255,7 @@ public class UserDto {
                 ", cv='" + cv + '\'' +
                 ", linkedin='" + linkedin + '\'' +
                 ", github='" + github + '\'' +
+                ", projects=" + projects +
                 '}';
     }
 }

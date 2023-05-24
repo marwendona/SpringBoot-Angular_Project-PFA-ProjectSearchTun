@@ -1,17 +1,12 @@
 package com.API_User.API_User.controller;
 
 import com.API_User.API_User.dto.LoginDto;
-import com.API_User.API_User.entity.Role;
 import com.API_User.API_User.security.JwtService;
 import com.API_User.API_User.security.UserDetailsImpl;
 import com.API_User.API_User.service.UserService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @RestController
 @CrossOrigin

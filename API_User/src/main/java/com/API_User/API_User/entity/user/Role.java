@@ -1,4 +1,4 @@
-package com.API_User.API_User.entity;
+package com.API_User.API_User.entity.user;
 
 public enum Role {
     ADMIN,

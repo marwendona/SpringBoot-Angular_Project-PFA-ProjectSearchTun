@@ -1,8 +1,11 @@
 package com.API_User.API_User.service.implement;
 
 import com.API_User.API_User.dto.LoginDto;
-import com.API_User.API_User.entity.User;
+import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.UserDto;
+import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.user.User;
+import com.API_User.API_User.repository.ProjectRepository;
 import com.API_User.API_User.repository.UserRepository;
 import com.API_User.API_User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,17 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private ProjectRepository projectRepository;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, ProjectRepository projectRepository) {
+        this.userRepository = userRepository;
+        this.projectRepository = projectRepository;
+    }
+
+    public UserServiceImpl() {
+    }
 
     @Override
     public String addUser(User user) {
@@ -35,7 +48,8 @@ public class UserServiceImpl implements UserService {
                 user.getPhoto(),
                 user.getCv(),
                 user.getLinkedin(),
-                user.getGithub()
+                user.getGithub(),
+                user.getProjects()
         );
         var user1 = userRepository.findByEmail(user.getEmail());
         if (user1.isEmpty()) {
@@ -66,7 +80,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("UserDto with id " + id + " not found"));
     }
 
-
     @Override
     public void updateUser(int id, User user) {
         UserDto userDtoFromDb = getUserById(id);
@@ -85,7 +98,6 @@ public class UserServiceImpl implements UserService {
         userDtoFromDb.setGithub(user.getGithub());
 
         userRepository.save(userDtoFromDb);
-
     }
 
     @Override
@@ -97,5 +109,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDto> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public String addProject(Project project, int userId) {
+        Optional<UserDto> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            throw new NoSuchElementException("Utilisateur introuvable avec l'ID : " + userId);
+        }
+
+        ProjectDto projectDto = new ProjectDto(
+                project.getProjectId(),
+                userOptional.get(),
+                project.getTitle(),
+                project.getType(),
+                project.getDescription(),
+                project.getRequiredSkills(),
+                project.getCreatedDate(),
+                project.getNumberOfMembers(),
+                project.getProjectStatus()
+        );
+        projectRepository.save(projectDto);
+
+        return projectDto.getTitle();
     }
 }
