@@ -1,5 +1,6 @@
 package com.API_User.API_User.service.implement;
 
+import com.API_User.API_User.adapter.ProjectAdapter;
 import com.API_User.API_User.dto.LoginDto;
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.UserDto;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -22,12 +24,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     private ProjectRepository projectRepository;
+    //private ProjectRequestRepository projectRequestRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ProjectRepository projectRepository) {
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
+      //  this.projectRequestRepository = projectRequestRepository;
     }
 
     public UserServiceImpl() {
@@ -132,5 +136,19 @@ public class UserServiceImpl implements UserService {
         projectRepository.save(projectDto);
 
         return projectDto.getTitle();
+    }
+
+    @Override
+    public List<Project> getProjects(int userId) {
+        var userDtoOptional = userRepository.findById(userId);
+        if (userDtoOptional.isPresent()) {
+            var userDto = userDtoOptional.get();
+            return userDto.getProjects()
+                    .stream()
+                    .map(ProjectAdapter::toProject)
+                    .toList();
+        } else {
+            return Collections.emptyList();
+        }
     }
 }

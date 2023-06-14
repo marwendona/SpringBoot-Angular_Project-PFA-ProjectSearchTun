@@ -2,6 +2,7 @@ package com.API_User.API_User.controller;
 
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.API_User.API_User.entity.user.User;
 import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.security.UserDetailsImpl;
@@ -73,6 +74,13 @@ public class UserController {
         String id = userService.addProject(project, userId);
         return id;
     }
+
+    @GetMapping("{userId}/projects")
+    public List<Project> getProjects(@PathVariable int userId) {
+        return userService.getProjects(userId);
+    }
+
+
 
     private static int getUserId() {
         return ((UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();

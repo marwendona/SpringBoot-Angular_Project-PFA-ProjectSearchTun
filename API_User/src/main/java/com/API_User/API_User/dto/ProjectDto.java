@@ -1,6 +1,9 @@
 package com.API_User.API_User.dto;
 
 import com.API_User.API_User.entity.project.ProjectStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +18,7 @@ public class ProjectDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int projectId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserDto user;
@@ -137,16 +141,20 @@ public class ProjectDto {
 
     @Override
     public String toString() {
-        return "ProjectDto{" +
-                "projectId=" + projectId +
-                ", user=" + user +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", requiredSkills=" + requiredSkills +
-                ", createdDate=" + createdDate +
-                ", numberOfMembers=" + numberOfMembers +
-                ", projectStatus=" + projectStatus +
-                '}';
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            // Ignorer la référence circulaire à user
+            mapper.addMixIn(UserDto.class, UserDtoMixin.class);
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return super.toString();
+        }
+    }
+
+    // Mixin pour ignorer la référence circulaire à user
+    private abstract static class UserDtoMixin {
+        @JsonIgnore
+        private List<ProjectDto> projects;
     }
 }
