@@ -54,6 +54,7 @@ public class ProjectDto {
     @Column(name = "status")
     private ProjectStatus projectStatus;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private List<ProjectRequestDto> projectRequests = new ArrayList<>();
 

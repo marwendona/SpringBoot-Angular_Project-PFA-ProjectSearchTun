@@ -2,6 +2,7 @@ package com.API_User.API_User.dto;
 
 import com.API_User.API_User.entity.user.Role;
 import com.API_User.API_User.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
@@ -78,6 +79,10 @@ public class UserDto {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<ProjectDto> projects = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<ProjectRequestDto> projectRequests = new ArrayList<>();
 
     public UserDto(int userId, Role role, String userFirstName, String userLastName, String email, String password, String institute, String profession, List<String> skills, String photo, String cv, String linkedin, String github, List<ProjectDto> projects) {
         this.userId = userId;
@@ -237,6 +242,14 @@ public class UserDto {
 
     public void setProjects(List<ProjectDto> projects) {
         this.projects = projects;
+    }
+
+    public List<ProjectRequestDto> getProjectRequests() {
+        return projectRequests;
+    }
+
+    public void setProjectRequests(List<ProjectRequestDto> projectRequests) {
+        this.projectRequests = projectRequests;
     }
 
     @Override

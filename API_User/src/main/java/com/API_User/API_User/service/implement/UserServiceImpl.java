@@ -156,12 +156,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<ProjectRequest> getProjectsRequests(int userId) {
-        return projectRequestRepository.findById(userId)
-                .stream()
-                .map(projectRequestDto -> ProjectRequest.builder()
-                        .project(ProjectAdapter.toProject(projectRequestDto.getProject()))
-                        // Ajoutez d'autres propriétés de détails de demande de projet si nécessaire
-                        .build())
-                .toList();
+        return userRepository.findById(userId)
+                .map(UserDto::getProjectRequests)
+                .map(projectRequestDtos -> projectRequestDtos
+                        .stream()
+                        .map(projectRequestDto -> {
+                            ProjectRequest projectRequest = new ProjectRequest();
+                            projectRequest.setProjectRequestId(projectRequestDto.getProjectRequestId());
+                            projectRequest.setUserId(projectRequestDto.getUser().getUserId());
+                            projectRequest.setProject(ProjectAdapter.toProject(projectRequestDto.getProject()));
+                            projectRequest.setProjectRequestDate(projectRequestDto.getProjectRequestDate());
+                            projectRequest.setStatus(projectRequestDto.getStatus());
+                            return projectRequest;
+                        }).toList())
+                .orElseGet(Collections::emptyList);
     }
 }
