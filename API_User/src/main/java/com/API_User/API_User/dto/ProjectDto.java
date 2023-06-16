@@ -1,6 +1,7 @@
 package com.API_User.API_User.dto;
 
 import com.API_User.API_User.entity.project.ProjectStatus;
+import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "project")
@@ -51,6 +53,9 @@ public class ProjectDto {
 
     @Column(name = "status")
     private ProjectStatus projectStatus;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    private List<ProjectRequestDto> projectRequests = new ArrayList<>();
 
     public ProjectDto() {
     }
@@ -139,22 +144,11 @@ public class ProjectDto {
         this.projectStatus = projectStatus;
     }
 
-    @Override
-    public String toString() {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            // Ignorer la référence circulaire à user
-            mapper.addMixIn(UserDto.class, UserDtoMixin.class);
-            return mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return super.toString();
-        }
+    public List<ProjectRequestDto> getProjectRequests() {
+        return projectRequests;
     }
 
-    // Mixin pour ignorer la référence circulaire à user
-    private abstract static class UserDtoMixin {
-        @JsonIgnore
-        private List<ProjectDto> projects;
+    public void setProjectRequests(List<ProjectRequestDto> projectRequests) {
+        this.projectRequests = projectRequests;
     }
 }

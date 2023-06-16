@@ -1,10 +1,9 @@
 package com.API_User.API_User.controller;
 
-import com.API_User.API_User.dto.ProjectDto;
+import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.project.Project;
 import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.API_User.API_User.entity.user.User;
-import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.security.UserDetailsImpl;
 import com.API_User.API_User.service.UserService;
 import jakarta.validation.Valid;
@@ -15,13 +14,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("api/v1/user")
 @Validated
 public class UserController {
@@ -50,11 +47,11 @@ public class UserController {
         return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 
-    @GetMapping({"/{userId}"})
-    public UserDto getUser(@PathVariable int userId) {
+    @GetMapping("/info")
+    public UserDto getUser() {
+        var userId = getUserId();
         return userService.getUserById(userId);
     }
-
 
     @PutMapping({"/{userId}"})
     public ResponseEntity<UserDto> updateUser(@PathVariable("userId") int userId, @RequestBody User user) {
@@ -80,7 +77,10 @@ public class UserController {
         return userService.getProjects(userId);
     }
 
-
+    @GetMapping("{userId}/projects_requests")
+    public List<ProjectRequest> getProjectsRequests(@PathVariable int userId) {
+        return userService.getProjectsRequests(userId);
+    }
 
     private static int getUserId() {
         return ((UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();

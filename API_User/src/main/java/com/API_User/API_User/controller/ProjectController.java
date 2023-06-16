@@ -2,6 +2,7 @@ package com.API_User.API_User.controller;
 
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.API_User.API_User.repository.ProjectRepository;
 import com.API_User.API_User.repository.UserRepository;
 import com.API_User.API_User.service.ProjectService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("api/v1/projects")
 @Validated
 public class ProjectController {
@@ -50,5 +51,13 @@ public class ProjectController {
         projectService.deleteProject(projectId);
     }
 
+    @PostMapping("/{projectId}/projects_requests")
+    public int createProjectRequest(@PathVariable int projectId, @RequestBody ProjectRequest projectRequest) {
+        return projectService.createProjectRequest(projectId, projectRequest);
+    }
 
+    @GetMapping("{projectId}/projects_requests")
+    public List<ProjectRequest> getProjectsRequests(@PathVariable int projectId) {
+        return projectService.getProjectsRequests(projectId);
+    }
 }

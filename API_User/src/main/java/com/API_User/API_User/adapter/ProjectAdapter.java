@@ -1,11 +1,8 @@
 package com.API_User.API_User.adapter;
 
 import com.API_User.API_User.dto.ProjectDto;
-import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.project.Project;
 import com.API_User.API_User.entity.user.User;
-
-import java.util.Date;
 
 public class ProjectAdapter {
     public static Project toProject(ProjectDto projectDto) {
@@ -34,5 +31,4 @@ public class ProjectAdapter {
                 .projectStatus(projectDto.getProjectStatus())
                 .build();
     }
-
 }

@@ -5,8 +5,10 @@ import com.API_User.API_User.dto.LoginDto;
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.API_User.API_User.entity.user.User;
 import com.API_User.API_User.repository.ProjectRepository;
+import com.API_User.API_User.repository.ProjectRequestRepository;
 import com.API_User.API_User.repository.UserRepository;
 import com.API_User.API_User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     private ProjectRepository projectRepository;
-    //private ProjectRequestRepository projectRequestRepository;
+    private ProjectRequestRepository projectRequestRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ProjectRepository projectRepository) {
+    public UserServiceImpl(UserRepository userRepository, ProjectRepository projectRepository, ProjectRequestRepository projectRequestRepository) {
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
-      //  this.projectRequestRepository = projectRequestRepository;
+        this.projectRequestRepository = projectRequestRepository;
     }
 
     public UserServiceImpl() {
@@ -150,5 +152,16 @@ public class UserServiceImpl implements UserService {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public List<ProjectRequest> getProjectsRequests(int userId) {
+        return projectRequestRepository.findById(userId)
+                .stream()
+                .map(projectRequestDto -> ProjectRequest.builder()
+                        .project(ProjectAdapter.toProject(projectRequestDto.getProject()))
+                        // Ajoutez d'autres propriétés de détails de demande de projet si nécessaire
+                        .build())
+                .toList();
     }
 }

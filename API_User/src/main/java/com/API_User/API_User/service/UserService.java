@@ -28,5 +28,5 @@ public interface UserService {
 
     List<Project> getProjects(int userId);
 
-
+    List<ProjectRequest> getProjectsRequests(int userId);
 }
