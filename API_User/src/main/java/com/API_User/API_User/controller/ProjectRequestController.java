@@ -1,6 +1,7 @@
 package com.API_User.API_User.controller;
 
 import com.API_User.API_User.entity.project_request.ProjectRequestStatus;
+import com.API_User.API_User.entity.project_request.StatusWrapper;
 import com.API_User.API_User.repository.ProjectRepository;
 import com.API_User.API_User.repository.ProjectRequestRepository;
 import com.API_User.API_User.repository.UserRepository;
@@ -27,8 +28,8 @@ public class ProjectRequestController {
         this.projectRequestService = projectRequestService;
     }
 
-    @PutMapping("/{projectRequestId}")
-    public ProjectRequestStatus acceptOrRejectProjectRequest(@PathVariable int projectRequestId, @RequestParam ProjectRequestStatus status) {
-        return projectRequestService.acceptOrRejectProjectRequest(projectRequestId, status);
+    @PutMapping("/{projectRequestId}/status")
+    public ProjectRequestStatus acceptOrRejectProjectRequest(@PathVariable int projectRequestId, @RequestBody StatusWrapper statusWrapper) {
+        return projectRequestService.acceptOrRejectProjectRequest(projectRequestId, statusWrapper.getStatus());
     }
 }
