@@ -5,6 +5,7 @@ import com.API_User.API_User.dto.LoginDto;
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.UserDto;
 import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.project.ProjectStatus;
 import com.API_User.API_User.entity.project_request.ProjectRequest;
 import com.API_User.API_User.entity.user.User;
 import com.API_User.API_User.repository.ProjectRepository;
@@ -123,6 +124,7 @@ public class UserServiceImpl implements UserService {
         if (userOptional.isEmpty()) {
             throw new NoSuchElementException("Utilisateur introuvable avec l'ID : " + userId);
         }
+        project.setProjectStatus(ProjectStatus.ACTIVE);
 
         ProjectDto projectDto = new ProjectDto(
                 project.getProjectId(),
@@ -135,6 +137,7 @@ public class UserServiceImpl implements UserService {
                 project.getNumberOfMembers(),
                 project.getProjectStatus()
         );
+
         projectRepository.save(projectDto);
 
         return projectDto.getTitle();
