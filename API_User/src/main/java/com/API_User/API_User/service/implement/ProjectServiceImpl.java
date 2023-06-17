@@ -5,7 +5,6 @@ import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.ProjectRequestDto;
 import com.API_User.API_User.entity.project.Project;
 import com.API_User.API_User.entity.project_request.ProjectRequest;
-import com.API_User.API_User.entity.project_request.ProjectRequestStatus;
 import com.API_User.API_User.exception.ResourceNotFoundException;
 import com.API_User.API_User.repository.ProjectRepository;
 import com.API_User.API_User.repository.ProjectRequestRepository;
@@ -90,11 +89,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectRequest> getProjectsRequests(int projectId) {
-
-//        ProjectRequestDto projectRequestDto1 = projectRequestRepository.findById(projectId).orElseThrow(() -> new RuntimeException());
-//        projectRequestDto1.setStatus(ProjectRequestStatus.ACCEPTED);
-//        projectRequestRepository.save(projectRequestDto1);
-
         return projectRepository.findById(projectId)
                 .map(ProjectDto::getProjectRequests)
                 .map(projectRequestDtos -> projectRequestDtos
@@ -110,42 +104,6 @@ public class ProjectServiceImpl implements ProjectService {
                         }).toList())
                 .orElseGet(Collections::emptyList);
     }
-
-//    public List<ProjectRequest> getProjectsRequests(int projectId) {
-//        return projectRequestRepository.findById(projectId)
-//                .stream()
-//                .map(projectRequestDto -> {
-//                    ProjectRequest projectRequest = new ProjectRequest();
-//                    projectRequest.setProjectRequestId(projectRequestDto.getProjectRequestId());
-//                    projectRequest.setUserId(projectRequestDto.getUser().getUserId());
-//                    projectRequest.setProject(ProjectAdapter.toProject(projectRequestDto.getProject()));
-//                    projectRequest.setProjectRequestDate(projectRequestDto.getProjectRequestDate());
-//                    projectRequest.setStatus(projectRequestDto.getStatus());
-//                    return projectRequest;
-//                })
-//                .toList();
-//    }
-
-//    public List<ProjectRequest> getProjectsRequests(int projectId) {
-//        return projectRequestRepository.findAllByProjectId(projectId)
-//                .stream()
-//                .map(projectRequestDto -> ProjectRequest.builder()
-//                        .project(ProjectAdapter.toProject(projectRequestDto.getProject()))
-//                        // Ajoutez d'autres propriétés de détails de demande de projet si nécessaire
-//                        .build())
-//                .toList();
-//    }
-
-//    public List<ProjectRequest> getProjectsRequests(@PathVariable int projectId) {
-//        List<ProjectRequestDto> projectRequestDtos = projectRequestRepository.findAllByProjectId(projectId);
-//        return projectRequestDtos.stream()
-//                .map(projectRequestDto -> ProjectRequest.builder()
-//                        .project(ProjectAdapter.toProject(projectRequestDto.getProject()))
-//                        // Ajoutez d'autres propriétés de détails de demande de projet si nécessaire
-//                        .build())
-//                .collect(Collectors.toList());
-//    }
-
 
     private static void fillProjectRequestDto(ProjectRequestDto projectRequestDto, ProjectRequest projectRequest) {
         projectRequestDto.setProjectRequestDate(projectRequest.getProjectRequestDate());
