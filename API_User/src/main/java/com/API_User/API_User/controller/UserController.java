@@ -53,15 +53,15 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @PutMapping({"/{userId}"})
-    public ResponseEntity<UserDto> updateUser(@PathVariable("userId") int userId, @RequestBody User user) {
-        userService.updateUser(userId, user);
-        return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+    @PutMapping({"/update"})
+    public ResponseEntity<UserDto> updateUser(@RequestBody User user) {
+        userService.updateUser(getUserId(), user);
+        return new ResponseEntity<>(userService.getUserById(getUserId()), HttpStatus.OK);
     }
 
-    @DeleteMapping({"/{userId}"})
-    public ResponseEntity<UserDto> deleteUser(@PathVariable("userId") int userId) {
-        userService.deleteUser(userId);
+    @DeleteMapping({"/delete"})
+    public ResponseEntity<UserDto> deleteUser() {
+        userService.deleteUser(getUserId());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -72,14 +72,20 @@ public class UserController {
         return id;
     }
 
-    @GetMapping("{userId}/projects")
-    public List<Project> getProjects(@PathVariable int userId) {
-        return userService.getProjects(userId);
+    @GetMapping("/projects")
+    public List<Project> getProjects() {
+        return userService.getProjects(getUserId());
     }
 
-    @GetMapping("{userId}/projects_requests")
-    public List<ProjectRequest> getProjectsRequests(@PathVariable int userId) {
-        return userService.getProjectsRequests(userId);
+//    la version que j ai changer pour ne pas passer l id en url et je fait ça pour tous
+//    @GetMapping("{userId}/projects")
+//    public List<Project> getProjects(@PathVariable int userId) {
+//        return userService.getProjects(userId);
+//    }
+
+    @GetMapping("/projects_requests")
+    public List<ProjectRequest> getProjectsRequests() {
+        return userService.getProjectsRequests(getUserId());
     }
 
     private static int getUserId() {
