@@ -4,7 +4,9 @@ import com.API_User.API_User.adapter.ProjectAdapter;
 import com.API_User.API_User.dto.ProjectDto;
 import com.API_User.API_User.dto.ProjectRequestDto;
 import com.API_User.API_User.entity.project.Project;
+import com.API_User.API_User.entity.project.ProjectStatus;
 import com.API_User.API_User.entity.project_request.ProjectRequest;
+import com.API_User.API_User.entity.project_request.ProjectRequestStatus;
 import com.API_User.API_User.exception.ResourceNotFoundException;
 import com.API_User.API_User.repository.ProjectRepository;
 import com.API_User.API_User.repository.ProjectRequestRepository;
@@ -81,6 +83,9 @@ public class ProjectServiceImpl implements ProjectService {
         var projectRequestDto = new ProjectRequestDto();
         projectRequestDto.setUser(userDto);
         projectRequestDto.setProject(projectDto);
+
+        projectRequestDto.setStatus(ProjectRequestStatus.PENDING);
+
         fillProjectRequestDto(projectRequestDto, projectRequest);
         projectRequestDto = projectRequestRepository.save(projectRequestDto);
 
