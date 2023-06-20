@@ -1,0 +1,180 @@
+<app-header></app-header>
+
+
+<!-- ============== SECTION CONTENT ============== -->
+<section class="padding-y">
+  <div class="container">
+
+    <div class="row">
+      <aside class="col-lg-3">
+
+        <h2>Filter</h2>
+        <br>
+        <label>Project Type :</label>
+        <div *ngFor="let category of categories">
+          <input type="checkbox" name="category" [value]="category">{{category}}
+        </div>
+        <br>
+        <label>Date :</label>
+        <div *ngFor="let size of sizes">
+          <input type="checkbox" name="size" [value]="size">{{size}}
+        </div>
+        <br>
+        <label>Number Of Members :</label>
+        <div class="form-group">
+          <input matInput type="number" min="1" [(ngModel)]="priceRange" [ngModelOptions]="{standalone: true}"
+            class="form-control" id="number" placeholder="Number" required>
+        </div>
+        <br>
+        <label>Skills :</label>
+        <div class="form-group">
+          <ng-multiselect-dropdown [placeholder]="'Select skills'" [data]="skills" [settings]="dropdownSettings">
+          </ng-multiselect-dropdown>
+        </div>
+        <br>
+        <div>
+          <button>Apply Filter</button>
+        </div>
+
+        <!-- card.// -->
+        <!-- ===== Card for sidebar filter .// ===== -->
+
+      </aside> <!-- col .// -->
+      <main class="col-lg-9">
+
+        <!-- <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+          <form [formGroup]="form" (ngSubmit)="onFilter()">
+            <input formControlName="name" placeholder="Name">
+            <input formControlName="age" placeholder="Age">
+            <button type="submit">Filter</button>
+          </form>
+          <ul>
+            <li *ngFor="let result of results">{{result}}</li>
+          </ul>
+        </header> -->
+
+        <!------------------------Affichage tab projets----------------------------->
+        <a style="display: none;">{{projets[0].title}}</a>
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let pro of projets">
+            <figure class="card card-product-grid">
+              <figcaption class="info-wrap border-top">
+                <div class="price-wrap">
+                  <h3>Title : {{pro.title}}</h3>
+                  <p>Type : {{pro.type}}</p>
+                </div> <!-- price-wrap.// -->
+
+                <div class="price-wrap">
+                  <h5>Project Creator</h5>
+                  <p class="title mb-2">Name : {{pro.user.userFirstName}} {{pro.user.userLastName}}</p>
+                  <p class="title mb-2">Email : {{pro.user.email}}</p>
+                  <p class="title mb-2">Institute : {{pro.user.institute}}</p>
+                  <p class="title mb-2">Profession : {{pro.user.profession}}</p>
+                  <p class="title mb-2">Linkedin : {{pro.user.linkedin}}</p>
+                  <p class="title mb-2">Github : {{pro.user.github}}</p>
+                </div>
+
+                <div class="price-wrap">
+                  <p class="title mb-2">Description : {{pro.description}}</p>
+                  <p class="title mb-2">Project Start Date : {{pro.createdDate}}</p>
+                  <p class="title mb-2">N° Of Members : {{pro.numberOfMembers}} | Status : {{pro.projectStatus}}</p>
+                </div>
+                <div class="price-wrap">
+                  <h5>Required Skills</h5>
+                  <p class="title mb-2">{{pro.requiredSkills}}</p>
+                </div>
+
+                <figcaption class="info-wrap border-top text-center">
+                  <a1 (click)="Open(pro.projectId)" class="btn btn-primary" routerLink="/details">Send Request</a1>
+                </figcaption>
+                <br>
+
+              </figcaption>
+            </figure>
+          </div> <!-- col end.// -->
+        </div>
+
+
+
+
+
+        <hr>
+        <footer class="d-flex mt-4">
+
+          <nav class="ms-3">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">2</span>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+</section>
+<div class="end-bar">
+
+  <div class="rightbar-title">
+    <a href="javascript:void(0);" class="end-bar-toggle float-end">
+      <i class="dripicons-cross noti-icon"></i>
+    </a>
+    <h5 class="m-0">Settings</h5>
+  </div>
+
+  <div class="rightbar-content h-100" data-simplebar>
+
+    <div class="p-3">
+
+
+      <!-- Settings -->
+      <h5 class="mt-3">Color Scheme</h5>
+      <hr class="mt-1" />
+
+      <div class="form-check form-switch mb-1">
+        <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="light" id="light-mode-check"
+          checked />
+        <label class="form-check-label" for="light-mode-check">Light Mode</label>
+      </div>
+
+      <div class="form-check form-switch mb-1">
+        <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="dark" id="dark-mode-check" />
+        <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+      </div>
+
+      <!-- Left Sidebar-->
+      <h5 class="mt-4">Left Sidebar</h5>
+      <hr class="mt-1" />
+
+      <div class="form-check form-switch mb-1">
+        <input type="checkbox" class="form-check-input" name="compact" value="fixed" id="fixed-check" checked />
+        <label class="form-check-label" for="fixed-check">Scrollable</label>
+      </div>
+
+      <div class="form-check form-switch mb-1">
+        <input type="checkbox" class="form-check-input" name="compact" value="condensed" id="condensed-check" />
+        <label class="form-check-label" for="condensed-check">Condensed</label>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+
+        <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/"
+          class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i>
+          Now</a>
+      </div>
+    </div> <!-- end padding-->
+
+  </div>
+</div>
+
+<div class="rightbar-overlay"></div>
+
+<app-footer></app-footer>

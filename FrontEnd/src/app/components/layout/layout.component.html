@@ -1,0 +1,62 @@
+<div class="content">
+    <!-- start page title -->
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <form class="d-flex">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-light" id="dash-daterange">
+                            <span class="input-group-text bg-primary border-primary text-white">
+                                <i class="mdi mdi-calendar-range font-13"></i>
+                            </span>
+                        </div>
+                        <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                            <i class="mdi mdi-autorenew"></i>
+                        </a>
+                        <a href="javascript: void(0);" class="btn btn-primary ms-1">
+                            <i class="mdi mdi-filter-variant"></i>
+                        </a>
+                    </form>
+                </div>
+                <h4 class="page-title">Dashboard</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row" >
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h4 class="header-title" style="color:rgb(206, 116, 162)">Projects</h4>
+                       
+                    </div>
+
+                   <app-chart-ing></app-chart-ing>
+                 
+                    
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col-->
+        <div class="col-lg-5">
+            <div class="card tilebox-one">
+                <div class="card-body">
+                    <i class="uil uil-constructor float-end" style="color:darkmagenta"></i>
+                    <h6 class="text-uppercase mt-0"style="color:darkmagenta">Total Projects</h6>
+                    <h2 class="my-2 " id="active-users-count">{{totaltasks}}</h2>
+                    
+                </div> <!-- end card-body-->
+            </div>
+            <!--end card-->
+            
+           
+        </div>
+      
+   
+    </div>
+   
+   
+    <!-- end row -->    
+</div> <!-- End Content -->

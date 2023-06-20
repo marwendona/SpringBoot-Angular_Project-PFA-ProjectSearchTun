@@ -1,0 +1,84 @@
+{
+   "projects":[
+    
+    {
+      "title": "Titre du projet 2",
+    "type": "Type du projet",
+    "description": "Description du projet 1",
+    "requiredSkills": ["Compétence 1", "Compétence 2"],
+    "createdDate": "2023-05-23",
+    "numberOfMembers": 3
+  },
+  {
+   "title": "Titre du projet 2",
+  "type": "Type du projet",
+  "description": "Description du projet 1",
+  "requiredSkills": ["Compétence 1", "Compétence 2"],
+  "createdDate": "2023-05-23",
+  "numberOfMembers": 3
+  },
+  {
+   "title": "Titre du projet 2",
+   "type": "Type du projet",
+   "description": "Description du projet 1",
+   "requiredSkills": ["Compétence 1", "Compétence 2"],
+   "createdDate": "2023-05-23",
+   "numberOfMembers": 3
+  }
+   ],
+  "articles":[
+   {
+      "id":"1257",
+      "title":"title1",
+      "type":"scientific",
+      "dateAppartion":"12/12/2000",
+      "source":"lien",
+      "auteur":"",
+      "link":"DOI"
+
+   },
+   {
+      "id":"1557",
+      "title":"title2",
+      "type":"scientific",
+      "dateAppartion":"12/10/2020",
+      "source":"lien2",
+      "auteur":"",
+      "link":"DOI5"
+
+   },
+   {
+      "id":"8978",
+      "title":"title3",
+      "type":"scientific",
+      "dateAppartion":"17/06/2019",
+      "source":"lien3",
+      "auteur":"",
+      "link":"DOI5"
+
+   }
+  ],
+  "EVT":[
+   {
+      "id":"125457",
+      "title":"title1",
+      "start":"12/12/2000",
+      "end":"17/06/2019"
+
+   },
+   {
+      "id":"12547",
+      "title":"title",
+      "start":"12/12/2000",
+      "end":"17/06/2019"
+
+   },
+   {
+      "id":"12657",
+      "title":"title",
+      "start":"12/12/2000",
+      "end":"17/06/2019"
+   }
+  ]
+
+}

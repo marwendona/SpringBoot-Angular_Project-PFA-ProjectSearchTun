@@ -1,0 +1,417 @@
+<div class="content-page">
+    <div class="content">
+
+        <!-- ---------------------------------------------add projet---------------------------------------------------------- -->
+
+
+
+        <div class="col-lg-8">
+          
+          
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-body">
+
+<!-- --------------------------------- -->
+
+
+    <div class="content">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a routerLink="/home">Dashboard</a></li>
+                          
+                            <li class="breadcrumb-item active">Project Board</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Projects Board 
+                        <button type="button" class="btn btn-success rounded-pill" data-bs-toggle="modal" data-bs-target="#standard-modal">
+                             <i class=" uil-plus"></i>Add Project
+                        </button>
+                    </h4>  
+             </div>
+            </div>
+        </div>     
+        <!-- end page title --> 
+
+        
+    </div> <!-- End Content -->
+
+
+
+
+<!-- update task Modal-->
+
+
+
+
+
+
+
+
+
+
+<!-- --------------------------------- -->
+  
+             
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            
+    
+          </div>
+
+
+
+
+
+
+
+
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item" routerLink="/home"><a>Dashboard</a></li>
+
+                            <li class="breadcrumb-item active" routerLink="/home/listeficheIng">List</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Project Details </h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+
+            <!-- Right Sidebar -->
+            <div class="col-20">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-0">
+                            <div class="d-lg-flex justify-content-between align-items-center">
+                                <!-- <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-file-export"></i></button> -->
+                                <div _ngcontent-pgt-c86=""
+                                    class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4 _ngcontent-pgt-c86="" class="card-title mb-4 text-info">List of Projects </h4>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered table-striped dt-responsive nowrap w-100"
+                                id="products-datatable">
+                                <thead>
+                                    <tr style="background-color: rgb(122, 180, 235);text-align: center;color: black;">
+                                        <th>N°</th>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Project start date</th>
+                                        <th>N° Of Members</th>
+                                        <th>Status</th>
+                                        <th style="width: 75px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="border-color: rgb(147, 147, 205);">
+                                    <tr
+                                        *ngFor="let project of listProjects| paginate: { itemsPerPage:5, currentPage: p }">
+                                        <td>
+                                            {{project.projectId}}
+                                        </td>
+                                        <td>
+                                            {{project.title}}
+                                        </td>
+                                        <td>
+                                            {{project.type}}
+                                        </td>
+                                        <td>
+                                            {{project.description}}
+                                        </td>
+                                        <td>
+                                            <i class="mdi mdi-calendar me-1"></i>
+                                            {{project.createdDate | date : 'dd/MM/yyyy HH:MM'}}
+                                        </td>
+                                        <td>
+                                            {{project.numberOfMembers}}
+                                        </td>
+                                        <td>
+                                            {{project.projectStatus}}
+                                        </td>
+                                        <td>
+                                            <button _ngcontent-ekw-c51="" href="javascript:void(0);"
+                                                data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                                [routerLink]="['/home/detailFiche',project.projectId]"
+                                                data-bs-placement="bottom" title="" data-bs-original-title="Download"
+                                                data-bs-toggle="modal" data-bs-target="#projectRequestsModal"
+                                                class="btn btn-link text-muted btn-lg p-0" (click)="selectProject(project.projectId)">
+                                                <i _ngcontent-ekw-c51="" class="mdi mdi mdi-eye"></i>
+                                            </button>
+                                        </td>
+                                        <!-- <td>
+                                            <button _ngcontent-ekw-c51="" href="javascript:void(0);"
+                                                data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                                [routerLink]="['/home/detailFiche',project.projectId]"
+                                                data-bs-placement="bottom" title="" data-bs-original-title="Download"
+                                                class="btn btn-link text-muted btn-lg p-0">
+                                                <i _ngcontent-ekw-c51="" class="mdi mdi-checkbox-marked-circle"></i>
+                                            </button>
+                                            <button _ngcontent-ljv-c51="" href="javascript:void(0);"
+                                                data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="" data-bs-original-title="Delete"
+                                                class="btn btn-link text-danger btn-lg p-0"
+                                                (click)="delete(project.projectId)">
+                                                <i _ngcontent-ljv-c51="" class="uil uil-multiply"></i>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div> <!-- end Col -->
+        </div><!-- End row -->
+
+    </div> <!-- End Content -->
+
+
+
+</div>
+
+<div class="modal fade" id="projectRequestsModal" tabindex="-1" aria-labelledby="projectRequestsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="projectRequestsModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-centered table-striped dt-responsive nowrap w-100"
+                        id="project-requests-datatable">
+                        <thead>
+                            <tr style="background-color: rgb(122, 180, 235);text-align: center;color: black;">
+                                <th>N°</th>
+                                <th>User id</th>
+                                <th>Project Request Date</th>
+                                <th>Status</th>
+                                <th style="width: 75px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style="border-color: rgb(147, 147, 205);">
+                            <tr
+                                *ngFor="let request of projectRequests| paginate: { itemsPerPage:5, currentPage: p }">
+                                <td>
+                                    {{request.projectRequestId}}
+                                </td>
+                                <td>
+                                    {{request.userId}}
+                                </td>
+                                <td>
+                                    <i class="mdi mdi-calendar me-1"></i>
+                                    {{request.projectRequestDate | date : 'dd/MM/yyyy HH:MM'}}
+                                </td>
+                                <td>
+                                    {{request.status}}
+                                </td>
+                                <td>
+                                    <button _ngcontent-ekw-c51="" href="javascript:void(0);"
+                                        data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                        [routerLink]="['/home/detailFiche',request.projectRequestId]"
+                                        data-bs-placement="bottom" title="" data-bs-original-title="Download"
+                                        class="btn btn-link text-muted btn-lg p-0"
+                                        (click)="accept(request.projectRequestId)">
+                                        <i _ngcontent-ekw-c51="" class="mdi mdi-checkbox-marked-circle"></i>
+                                    </button>
+                                    <button _ngcontent-ljv-c51="" href="javascript:void(0);"
+                                        data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="" data-bs-original-title="Delete"
+                                        class="btn btn-link text-danger btn-lg p-0"
+                                        (click)="reject(request.projectRequestId)">
+                                        <i _ngcontent-ljv-c51="" class="uil uil-multiply"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- MODAL add TASK -->
+<div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="standard-modalLabel"> Add Project</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="p-1" [formGroup]="tacheForm">
+
+
+
+                       
+
+
+
+
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="task-title" class="form-label">Title</label>
+                                <input type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title"  formControlName="title">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="task-description" class="form-label">Description</label>
+                        <textarea class="form-control form-control-light" id="task-description" rows="3" placeholder="Enter description" formControlName="description"></textarea>
+                    </div>
+
+                    <div class="row">
+
+                        <!--<div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="task-title" class="form-label">Client</label>
+                                <select class="form-select form-control-light" id="task-priority" formControlName="CLIENT_ID">
+                                    <option *ngFor="let client of listClients" [value]="client.id">{{client.lastName}} {{client.firstName}}</option>
+                                   
+                                </select>
+                            </div>
+                        </div>-->
+
+                        <!-- <div class="form-group">
+                            <label>Project Type</label>
+                            <ng-multiselect-dropdown
+                              [placeholder]="'Select A Type'"
+                              [data]="TypeProjects"
+                              [(ngModel)]="projectDtoProjectType"
+                              [settings]="dropdownSettingsTypeProject"
+                              [required]="true">
+                            </ng-multiselect-dropdown>
+                          </div> -->
+
+
+                        <!-- <div class="form-group">
+                            <label>Skills</label>
+                            <ng-multiselect-dropdown 
+                              [placeholder]="'Select skills'"
+                              [data]="skills"
+                              [(ngModel)]="projectDtoSkills"
+                              [settings]="dropdownSettings"
+                              [required]="true" >
+                            </ng-multiselect-dropdown>
+                          </div> -->
+
+                          <label>Type Project</label>
+                          <select name="category" [(ngModel)]="selectedCategory"  formControlName="category">
+  
+                            <option *ngFor="let category of categories" [value]="category.id">
+                              {{ category.name }}
+                            </option> 
+                            
+                         </select>
+                    
+
+                          <div class="form-group">
+                            <label>Skills</label>
+                          <ng-multiselect-dropdown
+                          [placeholder]="'custom placeholder'"
+                          [settings]="dropdownSettings"
+                          [data]="dropdownList"
+                          [(ngModel)]="selectedItems"
+                          (onSelect)="onItemSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelect)="onItemDeSelect($event)"
+                          (onDeSelectAll)="onItemDeSelectAll($event)"
+                       
+             
+                          >
+                          </ng-multiselect-dropdown>
+                        </div>
+
+
+
+                    
+
+            
+
+
+
+                        <div class="form-group">
+
+                            <div class="mb-3">
+                                <label for="number" class="form-label">Number</label>
+                                <input  type="number" min="1"  class="form-control" id="number"  placeholder="Number" required formControlName="number">
+                            </div>
+        
+
+                  </div>
+                        <!-- <div class="col-md-6"> -->
+                           
+                            <div  for="End_Date"  class="mb-3" id="datepicker1">
+                                <label for="End_Date"  class="form-label">End Date</label>
+                                <input type="datetime-local" id="End_Date" name="End_Date" class="form-control"  formControlName="end">
+                            </div>
+                          
+                        <!-- </div> -->
+                    </div>
+                    
+                    
+                </form>
+
+
+                
+            </div>
+            <div class="modal-footer"> 
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="uil-times"></i>Close</button>
+                <button type="button" class="btn btn-success"(click)="onSubmit()" data-bs-dismiss="modal"><i class=" uil-check"></i>Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

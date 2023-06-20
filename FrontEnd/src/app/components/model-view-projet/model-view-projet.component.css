@@ -1,0 +1,59 @@
+.mat-dialog-title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .mat-dialog-content {
+    font-size: 38px;
+    color: #555;
+    max-width: 800px;
+  }
+
+  .custom-dialog-content {
+    font-size: 38px;
+    color: #555;
+    padding: 80px; /* Ajoutez un padding pour augmenter l'espace interne du contenu */
+  }
+  
+  .mat-dialog-actions {
+    justify-content: flex-end;
+  }
+  
+  .cancel-button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .request-button {
+    background-color: darkgreen;
+    border: none;
+    color: white;
+    padding: 10px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Définissez l'espacement souhaité entre les boutons */
+  }
+  
+  .cancel-button,
+  .request-button {
+    flex-grow: 1;
+  }

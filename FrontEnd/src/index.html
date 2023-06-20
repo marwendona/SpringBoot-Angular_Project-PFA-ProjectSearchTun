@@ -2,31 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Angulardemo</title>
+  <title>FrontIntervention</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <!-- App favicon -->
+   <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-   <!-- Bootstrap css -->
-   <link href="assets/css/bootstrap.css?v=2.0" rel="stylesheet" type="text/css" />
-   <!-- Custom css -->
-   <link href="assets/css/ui.css?v=2.0" rel="stylesheet" type="text/css" />
-   <link href="assets/css/responsive.css?v=2.0" rel="stylesheet" type="text/css" />
-   <!-- Font awesome 5 -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" type="text/css" rel="stylesheet">
+   <!-- third party css -->
+   <link href="assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+   <!-- third party css end -->
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- App css -->
+  <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-style" />
+  <!-- for fiche  Intervention -->
+  <!-- Datatables css -->
+<link href="assets/css/vendor/buttons.bootstrap5.css" rel="stylesheet" type="text/css" />
+  
 </head>
-<body class="mat-typography">
+<body class="loading" data-layout-color="light" data-layout="detached" data-rightbar-onstart="true">
+
   <app-root></app-root>
+  <!-- bundle -->
+ 
+  <script src="assets/js/vendor.min.js"></script>
+  <script src="assets/js/app.min.js"></script>
+  <script src="assets/js/vendor/apexcharts.min.js"></script>
+  <script src="assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+  <script src="assets/js/pages/demo.dashboard.js"></script>
+  <!-- <script src="polyfills.js" type="module"></script>
+  <script src="runtime.js" type="module"></script>
+  <script src="styles.js" defer=""></script>
 
-   <!-- Bootstrap js -->
-   <script src="assets/js/bootstrap.bundle.min.js"></script>
-   <!-- Custom js -->
-   <script src="assets/js/script.js?v=2.0"></script>
+  <script src="vendor.js" type="module"></script>
+  <script src="main.js" type="module"></script> -->
+  <!-- for fiche intervention --><!-- Datatables js -->
+  
+<script src="assets/js/vendor/dataTables.buttons.min.js"></script>
+<script src="assets/js/vendor/buttons.bootstrap5.min.js"></script>
+<script src="assets/js/vendor/buttons.html5.min.js"></script>
+<script src="assets/js/vendor/buttons.flash.min.js"></script>
+<script src="assets/js/vendor/buttons.print.min.js"></script>
 
-   
+  
+  <!-- dragula js-->
+  <script src="assets/js/vendor/dragula.min.js"></script>
+
+  <!-- demo js -->
+  <script src="assets/js/ui/component.dragula.js"></script>
+
 </body>
 </html>

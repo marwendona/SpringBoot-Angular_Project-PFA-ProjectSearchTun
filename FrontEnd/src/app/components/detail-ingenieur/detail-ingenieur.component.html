@@ -1,0 +1,102 @@
+<div class="content-page">
+    <div class="content"><div class="control-container">
+      
+     
+     
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                         
+                            <li routerLink="/home/listingenieurs" class="breadcrumb-item"><a href="javascript: void(0);">Engineers</a></li>
+                            <li  class="breadcrumb-item active">Engineer Detail</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Engineer detail</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title --> 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <!-- Product image -->
+                                <a href="javascript: void(0);" class="text-center d-block mb-4">
+                                    <img src="http://localhost:8082/users/files/{{ingenieur.image}}" class="img-lg rounded-circle mb-10" style="max-width: 300px;" alt="Product-img">
+                                   
+                                        
+                                      
+                                      
+                                </a>
+                                
+                               
+                             
+                              
+                               
+                            </div> <!-- end col -->
+                            <div class="col-lg-7">
+                                <form class="ps-lg-4">
+                                    <!-- Product title -->
+                                    <h3 class="mt-0">{{ingenieur.lastName}} {{ingenieur.firstName}} <a href="javascript: void(0);" class="text-muted"></a> </h3>
+                                  
+                                    <p class="font-16">
+                                        <span class="text-warning mdi mdi-star"></span>
+                                        <span class="text-warning mdi mdi-star"></span>
+                                        <span class="text-warning mdi mdi-star"></span>
+                                        <span class="text-warning mdi mdi-star"></span>
+                                        <span class="text-warning mdi mdi-star"></span>
+                                    </p>
+
+                        
+                                    <!-- Product description -->
+                                   
+                                    <div class="mt-3">
+                                       
+
+                                        <p class="mt-4 mb-1"><strong><i class="uil uil-at"></i> Email:</strong></p>
+                                        <p>{{ingenieur.email}}</p>
+
+                                        <p class="mt-3 mb-1"><strong><i class="uil uil-phone"></i> Mobile phone:</strong></p>
+                                        <p>{{ingenieur.telephone}}</p>
+
+                                        <p class="mt-3 mb-1"><strong><i class=" uil-shield"></i> Status:</strong></p>
+                                        <p>
+                                            <span *ngIf="ingenieur.disponibilite=='disponible'" class="badge bg-success-lighten text-success">Available</span>
+                                        
+                                            <span  *ngIf="ingenieur.disponibilite=='indisponible'" class="badge badge-warning-lighten">Unavailable</span>
+                                        </p>
+
+                                        <p class="mt-3 mb-2"><strong><i class="uil-slack-alt"></i> Skills:</strong></p>
+                                      
+                                        <label *ngFor="let i of competence" class="badge badge-outline-dark">{{i.titre}}</label>
+                                        <p class="mt-3 mb-1"><strong><i class=" dripicons-user"></i> Account Status:</strong></p>
+                                      
+                                        <span *ngIf="ingenieur.enabled=='0' && ingenieur.valide=='1'" class="badge bg-danger rounded-pill">Blocked</span>
+                                        <span *ngIf="ingenieur.enabled=='1' && ingenieur.valide=='1'" class="badge bg-success rounded-pill">valid</span>
+                                        <span *ngIf="ingenieur.enabled=='1' && ingenieur.valide=='0'" class="badge bg-warning rounded-pill">Pending</span>
+                                    </div>
+
+                                </form>
+                            </div> <!-- end col -->
+                        </div> <!-- end row-->
+                        
+                       <!-- end table-responsive-->
+                        
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+        </div>
+        <!-- end row-->
+        
+    </div> <!-- End Content -->
+
+    
+
+</div>

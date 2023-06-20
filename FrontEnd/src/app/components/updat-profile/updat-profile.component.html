@@ -1,0 +1,224 @@
+<!------------------------------------------------------------------------------->
+  <!-- <p>profil works!</p>
+  <p>{{user.firstName}}</p>
+  <p>{{user.lastName}}</p>
+  <p>{{user.email}}</p> -->
+
+
+  <br><br>     <br>
+
+
+    <div class="main-body">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+             
+
+          
+
+                <div class="card-body p-4">
+                            
+                  <div class="text-center w-75 m-auto">
+                      <h4 class="text-dark-50 text-center mt-0 fw-bold">Update</h4>
+                  </div>
+
+                  <form [formGroup]="RegisterForm" >
+                      <div id="basicwizard">
+
+                          <ul class="nav nav-pills nav-justified form-wizard-header mb-4">
+                              <!-- <li routerLink="/registreAdmin" class="nav-item">
+                                  <a data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
+                                      <i class="mdi mdi-account-circle me-1"></i>
+                                      <span class="d-none d-sm-inline">Admin</span>
+                                  </a>
+                              </li> -->
+                             
+                              <li routerLink="/home/profileIng" class="nav-item">
+                                  <a  data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2 active">
+                                      <i class="uil-users-alt"></i>
+                                      <span class="d-none d-sm-inline"> cancel</span>
+                                  </a>
+                              </li>
+                          </ul>
+
+                          <div class="tab-content b-0 mb-0">
+                           
+
+                            
+                              <div class="tab-pane active" id="basictab2">
+                                  <div class="row">
+                                      <div class="col-12">
+                                         
+                                          <div class="row mb-3">
+                                              <label class="col-md-3 col-form-label" for="firstName">Firstname</label>
+                                              <div class="col-md-9">
+                                                  <input type="text" class="form-control" formControlName="firstName" placeholder="Enter your Firstname" required="" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }">
+                                                  <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                                                      <div *ngIf="f['firstName'].errors['required']">firstName is required</div>
+                                                    </div>
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label class="col-md-3 col-form-label" for="lastName">Lastname</label>
+                                              <div class="col-md-9">
+                                                  <input type="text" class="form-control" formControlName="lastName" placeholder="Enter your Lastname" required=""  [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }">
+                                                  <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                                                      <div *ngIf="f['lastName'].errors['required']">lastName is required</div>
+                                                    </div> 
+                                              </div>
+                                          </div>
+                                         
+
+
+                                          <div class="row mb-3">
+                                              <label class="col-md-3 col-form-label" for="email">Email</label>
+                                          <div class="col-md-9">
+                                              <input type="text" class="form-control" formControlName="email" placeholder="Enter your email" required=""  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                                              <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                                  <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                                                </div>
+                                          </div>
+                                          </div>
+                                         
+                                       
+                                         
+                                      <div class="row mb-3">
+                                          <label class="col-md-3 col-form-label" for="password"> Password</label>
+                                          <div class="col-md-9">
+                                              
+                                              <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter your password"  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                                              <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['password'].errors['required']">Password is required</div>
+                                                  <div *ngIf="f['password'].errors['minlength']">
+                                                    Password must be at least 6 characters
+                                                  </div>
+                                                  <div *ngIf="f['password'].errors['maxlength']">
+                                                    Password must not exceed 8 characters
+                                                  </div>
+                                                </div>
+                                              </div>
+                              
+                                      </div>
+                                          
+
+                                      <div class="row mb-3">
+                                          <label class="col-md-3 col-form-label" for="institute">Institute</label>
+                                          <div class="col-md-9">
+                                              <input type="text" class="form-control"  formControlName="institute" placeholder="Enter your Institute" required=""  [ngClass]="{ 'is-invalid': submitted && f['institute'].errors }">
+                                              <div *ngIf="submitted && f['institute'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['institute'].errors['required']">Institute is required</div>
+                                                </div>
+                                          </div>
+                                      </div>
+
+
+                                      <div class="row mb-3">
+                                          <label class="col-md-3 col-form-label" for="profession">Profession</label>
+                                          <div class="col-md-9">
+                                              <input type="text" class="form-control"  formControlName="profession" placeholder="Enter your Profession" required=""  [ngClass]="{ 'is-invalid': submitted && f['profession'].errors }">
+                                              <div *ngIf="submitted && f['profession'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['profession'].errors['required']">Profession is required</div>
+                                                </div>
+                                          </div>
+                                      </div>
+
+                                      <div class="row mb-3">
+                                          <label class="col-md-3 col-form-label" for="linkedin">Linkedin</label>
+                                          <div class="col-md-9">
+                                              <input type="text" class="form-control"  formControlName="linkedin" placeholder="Enter your Linkedin" required=""  [ngClass]="{ 'is-invalid': submitted && f['linkedin'].errors }">
+                                              <div *ngIf="submitted && f['linkedin'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['linkedin'].errors['required']">Linkedin is required</div>
+                                                </div>
+                                          </div>
+                                      </div>
+
+
+                                      <div class="row mb-3">
+                                          <label class="col-md-3 col-form-label" for="github">Github</label>
+                                          <div class="col-md-9">
+                                              <input type="text" class="form-control"  formControlName="github" placeholder="Enter your Github" required=""  [ngClass]="{ 'is-invalid': submitted && f['github'].errors }">
+                                              <div *ngIf="submitted && f['github'].errors" class="invalid-feedback">
+                                                  <div *ngIf="f['github'].errors['required']">Github is required</div>
+                                                </div>
+                                          </div>
+                                      </div>
+
+
+
+
+
+
+
+
+                                      <div>
+                                          
+                                          <label class="col-md-2 col-form-label" >Picture</label>
+                                      
+                                          <div class="group-input">
+                                              <input type="file" (change)="handleFileInput($event)" 
+                                              name="file"  class="form-control form-control-user"
+                                                  id="exampleRepeatPassword" placeholder="file">
+                                          </div>
+                                  </div>
+
+
+                                  <div>
+                                          
+                                      <label class="col-md-2 col-form-label" > CV</label>
+                                  
+                                      <div class="group-input">
+                                          <input type="file" (change)="handleFileInput($event)" 
+                                          name="file"  class="form-control form-control-user"
+                                              id="exampleRepeatPassword" placeholder="file">
+                                      </div>
+                              </div>
+                                      </div> <!-- end col -->
+                                 
+                                  </div> <!-- end row -->
+                                  <div class="mb-3">
+                                      <div class="form-group form-check">
+                                          <input
+                                            type="checkbox"
+                                            formControlName="acceptTerms"
+                                            class="form-check-input"
+                                            [ngClass]="{ 'is-invalid': submitted && f['acceptTerms'].errors }"
+                                          />
+                                          <label for="acceptTerms" class="form-check-label"
+                                            >I have read and agree to the Terms</label
+                                          >
+                                          <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-feedback">
+                                            Accept Terms is required
+                                          </div>
+                                        </div>
+                                  </div>
+                                  <div class="mb-3 text-center">
+                                      <button class="btn btn-primary" type="submit" (click)="onSubmit()"> Update </button>
+                                  </div>
+                              </div>
+                      
+                           </div>
+                      </div> <!-- end #basicwizard-->
+                 
+                  </form>
+
+              </div> <!-- end card-body -->
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          
+          
+       
+          
+  
+        </div>
+      </div>
+    </div>

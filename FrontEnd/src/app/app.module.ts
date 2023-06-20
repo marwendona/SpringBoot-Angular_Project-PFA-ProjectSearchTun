@@ -1,35 +1,41 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { DetailsComponent } from './details/details.component';
-import { ProjectComponent } from './project/project.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HomeComponent } from './components/home/home.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailIngenieurComponent } from './components/detail-ingenieur/detail-ingenieur.component';
+import { LoginComponent } from './components/login/login.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { RecherchePipe } from './pipes/recherche.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import{FormsModule}from '@angular/forms';
-import{ReactiveFormsModule}from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import {MatDialogModule} from '@angular/material/dialog';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ConfirmApplyComponent } from './confirm-apply/confirm-apply.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
-import { MatNativeDateModule } from '@angular/material/core';
-import { DialogCreateComponent } from './dialog-create/dialog-create.component';
-import { CommonModule } from '@angular/common';
+
+
+import { ToastrModule } from 'ngx-toastr';
+import { ListeFicheIngComponent } from './components/liste-fiche-ing/liste-fiche-ing.component';
+import { ChartIngComponent } from './components/chart-ing/chart-ing.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
+import { RegistreUserComponent } from './components/registre-user/registre-user.component';
+import { FilterProjectComponent } from './filter-project/filter-project.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatSelectModule} from '@angular/material/select';
+import { ModelEditComponent } from './components/model-edit/model-edit.component';
+import { ModelViewProjetComponent } from './components/model-view-projet/model-view-projet.component';
+//import { ModelComponent } from './model/model.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ProjectsRequestsListComponent } from './components/projects-requests-list/projects-requests-list.component';
+import { UpdatProfileComponent } from './components/updat-profile/updat-profile.component';
 
 
 
@@ -37,44 +43,46 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
     HomeComponent,
+    LayoutComponent,
+    DetailIngenieurComponent,
+    RegistreUserComponent,
+    TasksComponent,
     ProfileComponent,
-    DetailsComponent,
-    ProjectComponent,
+    RecherchePipe,
+    ListeFicheIngComponent,
+    ChartIngComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    ConfirmEmailComponent,
     LoginComponent,
-    RegisterComponent,
-    ConfirmApplyComponent,
-    DialogCreateComponent,
+    FilterProjectComponent,
+    ModelEditComponent,
+    ModelViewProjetComponent,
+    ProjectsRequestsListComponent,
+    UpdatProfileComponent,
+
     
-   
-    
-    
-  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatStepperModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatFormFieldModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule,
-    HttpClientModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSlideToggleModule,
-    MatDatepickerModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatNativeDateModule,
+    ToastrModule.forRoot(),
+    DragDropModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
-    CommonModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatAutocompleteModule
+
+  
    
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

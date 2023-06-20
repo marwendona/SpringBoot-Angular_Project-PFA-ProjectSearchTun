@@ -1,0 +1,176 @@
+<div class="content-page">
+    <div class="content">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a routerLink="/home">Dashboard</a></li>
+                          
+                            <li class="breadcrumb-item active">Project Board</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Projects Board 
+                        <button type="button" class="btn btn-success rounded-pill" data-bs-toggle="modal" data-bs-target="#standard-modal">
+                             <i class=" uil-plus"></i>Add Project
+                        </button>
+                    </h4>  
+             </div>
+            </div>
+        </div>     
+        <!-- end page title --> 
+
+        
+    </div> <!-- End Content -->
+
+</div>
+
+
+
+<!-- update task Modal-->
+
+
+
+
+
+
+<!-- MODAL add TASK -->
+<div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="standard-modalLabel"> Add Project</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="p-1" [formGroup]="tacheForm">
+
+
+
+                       
+
+
+
+
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="task-title" class="form-label">Title</label>
+                                <input type="text" class="form-control form-control-light" id="task-title" placeholder="Enter title"  formControlName="title">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="task-description" class="form-label">Description</label>
+                        <textarea class="form-control form-control-light" id="task-description" rows="3" placeholder="Enter description" formControlName="description"></textarea>
+                    </div>
+
+                    <div class="row">
+
+                        <!--<div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="task-title" class="form-label">Client</label>
+                                <select class="form-select form-control-light" id="task-priority" formControlName="CLIENT_ID">
+                                    <option *ngFor="let client of listClients" [value]="client.id">{{client.lastName}} {{client.firstName}}</option>
+                                   
+                                </select>
+                            </div>
+                        </div>-->
+
+                        <!-- <div class="form-group">
+                            <label>Project Type</label>
+                            <ng-multiselect-dropdown
+                              [placeholder]="'Select A Type'"
+                              [data]="TypeProjects"
+                              [(ngModel)]="projectDtoProjectType"
+                              [settings]="dropdownSettingsTypeProject"
+                              [required]="true">
+                            </ng-multiselect-dropdown>
+                          </div> -->
+
+
+                        <!-- <div class="form-group">
+                            <label>Skills</label>
+                            <ng-multiselect-dropdown 
+                              [placeholder]="'Select skills'"
+                              [data]="skills"
+                              [(ngModel)]="projectDtoSkills"
+                              [settings]="dropdownSettings"
+                              [required]="true" >
+                            </ng-multiselect-dropdown>
+                          </div> -->
+
+                          <label>Type Project</label>
+                          <select name="category" [(ngModel)]="selectedCategory"  formControlName="category">
+  
+                            <option *ngFor="let category of categories" [value]="category.id">
+                              {{ category.name }}
+                            </option> 
+                            
+                         </select>
+                    
+
+                          <div class="form-group">
+                            <label>Skills</label>
+                          <ng-multiselect-dropdown
+                          [placeholder]="'custom placeholder'"
+                          [settings]="dropdownSettings"
+                          [data]="dropdownList"
+                          [(ngModel)]="selectedItems"
+                          (onSelect)="onItemSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelect)="onItemDeSelect($event)"
+                          (onDeSelectAll)="onItemDeSelectAll($event)"
+                       
+             
+                          >
+                          </ng-multiselect-dropdown>
+                        </div>
+
+
+
+                    
+
+            
+
+
+
+                        <div class="form-group">
+
+                            <div class="mb-3">
+                                <label for="number" class="form-label">Number</label>
+                                <input  type="number" min="1"  class="form-control" id="number"  placeholder="Number" required formControlName="number">
+                            </div>
+        
+
+                  </div>
+                        <!-- <div class="col-md-6"> -->
+                           
+                            <div  for="End_Date"  class="mb-3" id="datepicker1">
+                                <label for="End_Date"  class="form-label">End Date</label>
+                                <input type="datetime-local" id="End_Date" name="End_Date" class="form-control"  formControlName="end">
+                            </div>
+                          
+                        <!-- </div> -->
+                    </div>
+                    
+                    
+                </form>
+
+
+                
+            </div>
+            <div class="modal-footer"> 
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal"><i class="uil-times"></i>Close</button>
+                <button type="button" class="btn btn-success"(click)="onSubmit()" data-bs-dismiss="modal"><i class=" uil-check"></i>Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

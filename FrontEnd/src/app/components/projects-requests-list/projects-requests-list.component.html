@@ -1,0 +1,118 @@
+<div class="content-page">
+    <div class="content">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item" routerLink="/home"><a>Dashboard</a></li>
+
+                            <li class="breadcrumb-item active" routerLink="/home/listeficheIng">List</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Project Details </h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+
+            <!-- Right Sidebar -->
+            <div class="col-20">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-0">
+                            <div class="d-lg-flex justify-content-between align-items-center">
+                                <!-- <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-file-export"></i></button> -->
+                                <div _ngcontent-pgt-c86=""
+                                    class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4 _ngcontent-pgt-c86="" class="card-title mb-4 text-info">List of Projects
+                                        requests </h4>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered table-striped dt-responsive nowrap w-100"
+                                id="products-datatable">
+                                <thead>
+                                    <tr style="background-color: rgb(122, 180, 235);text-align: center;color: black;">
+                                        <th>N°</th>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+
+                                        <th>N° Of Members</th>
+                                        <th>Status</th>
+                                        <th style="width: 75px;">Project Request Date</th>
+                                        <th style="width: 75px;">Project Request Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="border-color: rgb(147, 147, 205);">
+                                    <tr
+                                        *ngFor="let projectRequest of projectRequests| paginate: { itemsPerPage:5, currentPage: p }">
+                                        <td>
+                                            {{projectRequest.projectRequestId}}
+                                        </td>
+                                        <td>
+                                            {{projectRequest.project.title}}
+                                        </td>
+                                        <td>
+                                            {{projectRequest.project.type}}
+                                        </td>
+                                        <td>
+                                            {{projectRequest.project.description}}
+                                        </td>
+
+                                        <td>
+                                            {{projectRequest.project.numberOfMembers}}
+                                        </td>
+                                        <td>
+                                            {{projectRequest.project.projectStatus}}
+                                        </td>
+                                        <td>
+                                            <i class="mdi mdi-calendar me-1"></i>
+                                            {{projectRequest.projectRequestDate | date : 'dd/MM/yyyy HH:MM'}}
+                                        </td>
+
+                                        <td>
+                                            {{projectRequest.status}}
+                                        </td>
+                                        <!-- <td>
+                                            <button _ngcontent-ekw-c51="" href="javascript:void(0);"
+                                                data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                                [routerLink]="['/home/detailFiche',project.projectId]"
+                                                data-bs-placement="bottom" title="" data-bs-original-title="Download"
+                                                class="btn btn-link text-muted btn-lg p-0">
+                                                <i _ngcontent-ekw-c51="" class="mdi mdi-checkbox-marked-circle"></i>
+                                            </button>
+                                            <button _ngcontent-ljv-c51="" href="javascript:void(0);"
+                                                data-bs-container="#tooltip-container9" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom" title="" data-bs-original-title="Delete"
+                                                class="btn btn-link text-danger btn-lg p-0"
+                                                (click)="delete(project.projectId)">
+                                                <i _ngcontent-ljv-c51="" class="uil uil-multiply"></i>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div>
+
+            </div> <!-- end Col -->
+        </div><!-- End row -->
+
+    </div> <!-- End Content -->
+
+
+
+</div>
