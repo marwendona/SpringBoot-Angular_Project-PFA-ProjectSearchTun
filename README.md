@@ -2,14 +2,6 @@
 
 Project Search Tun is a website that serves as a student mentoring platform with an innovative approach to project and topic selection. It provides a collaborative space for students and supervision by teachers in end-of-study and end-of-year projects.
 
-## Technologies Used
-
-- Spring Boot (Java)
-- Angular (TypeScript, HTML, CSS)
-- Bootstrap
-- Material
-- MySQL (Database)
-
 ## Features
 
 - **Project and Topic Selection**: ProjectSearchTun offers a unique approach to project and topic selection, allowing students to explore various options and make informed decisions.
